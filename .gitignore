@@ -20,3 +20,12 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+Appli/.idea/uiDesigner.xml
+Appli/.idea/vcs.xml
+Appli/.idea/compiler.xml
+Appli/.idea/encodings.xml
+Appli/.idea/description.html
+Appli/.idea/gradle.xml
+Appli/.idea/misc.xml
+Appli/.idea/modules.xml
+Appli/.idea/workspace.xml
