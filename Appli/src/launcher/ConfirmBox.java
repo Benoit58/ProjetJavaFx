@@ -1,4 +1,4 @@
-package laucher;
+package launcher;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.stage.Window;
 import metier.Sensor;
 import model.SensorModel;
 
@@ -21,8 +22,6 @@ public class MainWindowControl implements Initializable {
 
     private ObservableList<Sensor> sensorList = FXCollections.observableArrayList();
 
-
-
     @FXML
     private ListView sensors;
 
@@ -41,12 +40,15 @@ public class MainWindowControl implements Initializable {
     private void newWindow(ActionEvent event) {
         //code du bouton
         Stage window = new Stage();
-        VBox layout = new VBox();
+        Button button = new Button();
 
-        window.setTitle("WINDOW 2");
+        window.setTitle("new window");
         window.setMinWidth(200);
-        Scene scene= new Scene(layout, 300, 300);
 
-        buttonChange.setOnAction(e -> window.setScene(scene));
+        button.setText("r");
+        Scene scene= new Scene(button, 300, 300);
+
+        window.setScene(scene);
+        window.show();
     }
 }

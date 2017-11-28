@@ -1,4 +1,4 @@
-package laucher;
+package launcher;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -20,7 +20,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/views/MainWindow.fxml"));
-
 
         window = primaryStage;
         window.setTitle("JAVAFX - Project");
@@ -44,8 +43,6 @@ public class Main extends Application {
         Scene scene= new Scene(root, 300, 300);
         window.setScene(scene);
         window.show();
-
-
     }
 
     private void closeProgram(){
