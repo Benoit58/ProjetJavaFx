@@ -18,6 +18,20 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+<<<<<<< HEAD
+=======
+        Parent root = FXMLLoader.load(getClass().getResource("/views/mainWindow.fxml"));
+
+        window = primaryStage;
+        window.setTitle("JAVAFX - Project");
+        window.show();
+        window.setOnCloseRequest(event -> {
+            event.consume();  //ctrl+Q to check the meaning of the method
+            closeProgram();
+        });
+
+        BorderPane grid = new BorderPane();
+>>>>>>> 07d4139084b87626e0731df42e7fa670987d4eb1
 
         Parent root = FXMLLoader.load (getClass().getResource("/views/RootLayout.fxml"));
         primaryStage.setOnCloseRequest(event -> {
