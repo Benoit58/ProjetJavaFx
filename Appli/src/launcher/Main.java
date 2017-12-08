@@ -1,17 +1,9 @@
 package launcher;
 
-import controllers.RootLayout;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class Main extends Application {
@@ -20,7 +12,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
 
 
-        Parent root = FXMLLoader.load (getClass().getResource("/views/RootLayout.fxml"));
+        Parent root = FXMLLoader.load (getClass().getResource("/views/mainWindow.fxml"));
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
             closeProgram(primaryStage);

@@ -12,19 +12,18 @@ import model.SensorModel;
 
 import static java.awt.SystemColor.window;
 
-public class RootLayout{
+public class mainWindowControl {
 
     @FXML private ListView<Sensor> sensors;
     @FXML private ChoiceBox displayType;
     @FXML Button button_valid;
 
     SensorModel data = new SensorModel();
-    ObservableList<Sensor> sensorObservableList = data.getSensors();
 
 
 
     public void initialize(){
-        sensors.setItems(sensorObservableList);
+        sensors.setItems(data.getSensors());
     }
 
     public void display(){
@@ -40,6 +39,9 @@ public class RootLayout{
             window.setScene(scene);
             window.show();
         });
+
+        
+
     }
     
 
