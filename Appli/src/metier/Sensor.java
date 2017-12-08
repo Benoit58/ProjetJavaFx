@@ -1,33 +1,39 @@
 package metier;
 
+import javafx.beans.property.*;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.geometry.Point2D;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
+
 public class Sensor {
 
-    private String nom;
-    private int temp;
+    private final StringProperty sensorName = new SimpleStringProperty();
+        public String getSensorName() {return sensorName.get();}
+        public void setSensorName(String name) {this.sensorName.set(name);}
+        public StringProperty sensorNameProperty() { return sensorName; }
 
-    public Sensor(String nom, int temp) {
-        this.nom=nom;
-        this.temp=temp;
+    private final IntegerProperty temp = new SimpleIntegerProperty();
+        public int getTemperature() {return temp.get();}
+        public void setTemperature(int temperature) {this.temp.set(temperature);}
+        public IntegerProperty temperatureProperty(){return temp;}
+
+    private final IntegerProperty frequency = new SimpleIntegerProperty();
+        public long getFrequency() {return frequency.get();}
+        public void setFrequency(int freq) {this.frequency.set(freq);}
+        public IntegerProperty frequencyProperty(){return frequency;}
+
+    public Sensor(String sensorName, int temp, int frequency) {
+        this.sensorName.set(sensorName);
+        this.temp.set(temp);
+        this.frequency.set(frequency);
+
     }
-
-    public String getNom(){
-        return nom;
-    }
-
-    public void setNom(String nom){
-        this.nom = nom;
-    }
-
-    public int getTemp(){
-        return temp;
-    }
-
-    public void setTemp(int temp){
-        this.temp = temp;
-    }
-
     @Override
     public String toString(){
-        return "Sensor : " + nom + " temp : " + temp ;
+        return  sensorName + " - temp : " + temp ;
     }
 }
+
