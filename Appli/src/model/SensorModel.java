@@ -12,6 +12,7 @@ public class SensorModel {
 
     private final ListProperty<Sensor> sensors = new SimpleListProperty<>(sensorList);
     public ObservableList<Sensor> getSensors() { return sensors.get(); }
+    public ListProperty<Sensor> sensorProperty(){return sensors; }
 
     public SensorModel(){
 

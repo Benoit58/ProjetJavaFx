@@ -10,20 +10,17 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-
-
         Parent root = FXMLLoader.load (getClass().getResource("/views/mainWindow.fxml"));
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
             closeProgram(primaryStage);
         });
-
         try{
-            Scene scene = new Scene(root, 640, 480);
-            scene.getStylesheets().add(getClass().getResource("/views/application.css").toExternalForm());
-            primaryStage.setScene(scene);
+            root.getStylesheets().add(getClass().getResource("/views/application.css").toExternalForm());
+            primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
+            primaryStage.setTitle("Application");
             primaryStage.show();
 
         } catch(Exception e) {

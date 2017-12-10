@@ -20,15 +20,13 @@ public class mainWindowControl {
 
     SensorModel data = new SensorModel();
 
-
-
     public void initialize(){
-        sensors.setItems(data.getSensors());
+        sensors.itemsProperty().bind(data.sensorProperty());
     }
 
     public void display(){
-        Sensor selectedSensor = sensors.getSelectionModel().getSelectedItem(); //get Sensor
         button_valid.setOnAction(event -> {
+            Sensor selectedSensor = sensors.getSelectionModel().getSelectedItem(); //get Sensor
             Stage window = new Stage();
             Label random = new Label();
             random.setText(selectedSensor.getSensorName());
@@ -40,7 +38,7 @@ public class mainWindowControl {
             window.show();
         });
 
-        
+
 
     }
     
