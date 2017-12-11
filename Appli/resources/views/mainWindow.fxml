@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.mainWindowControl">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.45" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,7 +23,7 @@
             <Insets bottom="60.0" left="20.0" top="25.0" />
          </GridPane.margin>
       </ListView>
-      <Label text="SensorsManager" textFill="#c72424" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER">
+      <Label text="SensorsManager" textFill="#c72424" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER">
          <font>
             <Font size="24.0" />
          </font>
@@ -42,29 +31,22 @@
             <Insets />
          </GridPane.margin>
       </Label>
-      <ListView prefHeight="117.0" prefWidth="48.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+      <Button fx:id="button_valid" mnemonicParsing="false" onAction="#display" text="Display" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+      <Label text="Select a sensor" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
+      <ComboBox fx:id="algoChoice" prefWidth="150.0" promptText="Select an algorithm..." GridPane.columnIndex="1" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
          <GridPane.margin>
-            <Insets bottom="80.0" left="30.0" right="90.0" top="25.0" />
+            <Insets bottom="100.0" left="20.0" />
          </GridPane.margin>
-      </ListView>
-      <Label prefHeight="15.0" prefWidth="160.0" text="Select an algorithm" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP">
-         <GridPane.margin>
-            <Insets left="30.0" />
-         </GridPane.margin>
-      </Label>
-      <MenuButton mnemonicParsing="false" text="Select display option" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+      </ComboBox>
+      <MenuButton fx:id="displayType" mnemonicParsing="false" text="Display Option" GridPane.columnIndex="2" GridPane.rowIndex="1" GridPane.valignment="TOP">
         <items>
-          <MenuItem mnemonicParsing="false" text="Action 1" />
-          <MenuItem mnemonicParsing="false" text="Action 2" />
+          <MenuItem mnemonicParsing="false" text="Digital" />
+          <MenuItem mnemonicParsing="false" text="Thermometer" />
+            <MenuItem mnemonicParsing="false" text="Icons" />
         </items>
          <GridPane.margin>
-            <Insets />
+            <Insets left="70.0" top="30.0" />
          </GridPane.margin>
-         <font>
-            <Font size="13.0" />
-         </font>
       </MenuButton>
-      <Button mnemonicParsing="false" text="Display" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-      <Label text="Select a sensor" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="TOP" />
    </children>
 </GridPane>
