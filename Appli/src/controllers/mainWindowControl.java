@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import metier.Sensor;
+import metier.SensorCell;
 import model.SensorModel;
 
 import static java.awt.SystemColor.window;
@@ -15,13 +16,15 @@ import static java.awt.SystemColor.window;
 public class mainWindowControl {
 
     @FXML private ListView<Sensor> sensors;
-    @FXML private ChoiceBox displayType;
     @FXML Button button_valid;
 
     SensorModel data = new SensorModel();
 
     public void initialize(){
         sensors.itemsProperty().bind(data.sensorProperty());
+        sensors.setCellFactory(param -> new SensorCell());
+        sensors.setPrefWidth(230);
+        sensors.setPrefHeight(200);
     }
 
     public void display(){
