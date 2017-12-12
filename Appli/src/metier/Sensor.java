@@ -1,12 +1,6 @@
 package metier;
 
 import javafx.beans.property.*;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Point2D;
-import javafx.scene.layout.AnchorPane;
-
-import java.io.IOException;
 
 public class Sensor {
 
@@ -36,8 +30,3 @@ public class Sensor {
         return  sensorName + " - temp : " + temp ;
     }
 }
-
-
-
-//@Override
-//void updateItems(..., ...)

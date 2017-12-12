@@ -7,6 +7,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import metier.AlgorithmContext;
+import metier.AlgorithmStrategy;
 import metier.Sensor;
 import metier.SensorCell;
 import model.SensorModel;
@@ -21,15 +23,28 @@ public class MainWindowController {
     Button button_valid;
     @FXML
     MenuButton displayType;
+    @FXML
+    ComboBox<AlgorithmStrategy> algoChoice;
 
     SensorModel data = new SensorModel();
 
+    AlgorithmContext algo = new AlgorithmContext();
 
     public void initialize() {
+
+        //sensors
         sensors.itemsProperty().bind(data.sensorProperty());
         sensors.setCellFactory(param -> new SensorCell());
         sensors.setPrefWidth(230);
         sensors.setPrefHeight(200);
+
+        //algorithm context
+        AlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
+        switch (algoChoice.getSelectionModel().getSelectedItem())
+        {
+            case
+        }
+        algo.setAlgorithmStrategy();
     }
 
     public void display() throws IOException {
