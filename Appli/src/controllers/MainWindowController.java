@@ -1,11 +1,11 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import metier.AlgorithmContext;
 import metier.AlgorithmStrategy;
@@ -18,7 +18,7 @@ import java.io.IOException;
 public class MainWindowController {
 
     @FXML
-    private ListView<Sensor> sensors;
+    private ListView<Sensor> sensorListView;
     @FXML
     Button button_valid;
     @FXML
@@ -28,24 +28,54 @@ public class MainWindowController {
 
     SensorModel data = new SensorModel();
 
+
     AlgorithmContext algo = new AlgorithmContext();
 
     public void initialize() {
 
-        //sensors
-        sensors.itemsProperty().bind(data.sensorProperty());
-        sensors.setCellFactory(param -> new SensorCell());
-        sensors.setPrefWidth(230);
-        sensors.setPrefHeight(200);
+
+        //sensorListView
+        sensorListView.itemsProperty().bind(data.sensorProperty());
+        sensorListView.setCellFactory(param -> new SensorCell());
+
+/*
+        sensorListView.setCellFactory((param) -> {
+            return new ListCell<Sensor>(){
+                @Override
+                protected void updateItem(Sensor sensor, boolean empty) {
+                    super.updateItem(sensor, empty);
+                    if (item == null || empty ) {
+                        textProperty().bind(sensor.sensorNameProperty());
+                    } else {
+                        textProperty().unbind();
+                        setText(null);
+                        setStyle("");
+                    }
+                }
+            };
+        });
+        sensorListView.getSelectionModel().selectedItemProperty().addListener((o,oldValue,newValue)->{
+            if (old != null) {
+                sensorName.textProperty().unbindBidirectional(oldValue.sensorNameProperty());
+
+            }
+            if (newV != null) {
+                sensorName.textProperty().bindBidirectional(oldValue.sensorNameProperty());
+            }
+        });
+*/
+
+        sensorListView.setPrefWidth(230);
+        sensorListView.setPrefHeight(200);
 
         //algorithm context
         AlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
-        switch (algoChoice.getSelectionModel().getSelectedItem())
+        /*switch (algoChoice.getSelectionModel().getSelectedItem())
         {
             case
         }
         algo.setAlgorithmStrategy();
-    }
+    */}
 
     public void display() throws IOException {
         DigitalDisplayController digit;
@@ -55,10 +85,10 @@ public class MainWindowController {
 
             case "Digital":
                 Stage digitalWindow = new Stage();
-                FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/DigitalDisplay.fxml"));
+                FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
                 digitalWindow.setScene(new Scene(digitalLoader.load()));
                 digit = digitalLoader.getController();
-                digit.load(sensors.getSelectionModel().getSelectedItem());
+                digit.load(sensorListView.getSelectionModel().getSelectedItem());
                 digitalWindow.setResizable(false);
                 digitalWindow.centerOnScreen();
                 digitalWindow.setTitle("Mon capteur");
@@ -73,4 +103,21 @@ public class MainWindowController {
 
         }
     }
+
+    public void addSensor()  throws IOException{
+        AddSensorController addSensorController;
+        Stage add = new Stage();
+        add.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader addloader = new FXMLLoader(getClass().getResource("/views/addSensor.fxml"));
+        add.setScene(new Scene(addloader.load()));
+        addSensorController = addloader.getController();
+        addSensorController.getSensorModel(data);
+        add.setResizable(false);
+        add.centerOnScreen();
+
+        add.setTitle("Add new sensor");
+        add.show();
+    }
+
 }
+

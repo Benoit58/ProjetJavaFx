@@ -8,7 +8,7 @@ public class AlgorithmContext{
     }
 
     //use the generation strategy
-    public int generateValue(){
-        return strategy.algorithm(algorithm);
-    }
+    //public int generateValue(){
+        //return strategy.algorithm(algorithm);
+    //}
 }
