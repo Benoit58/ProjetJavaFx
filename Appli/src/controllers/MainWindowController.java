@@ -10,8 +10,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import metier.AlgorithmContext;
-import metier.AlgorithmStrategy;
+import metier.IAlgorithmStrategy;
+import metier.IntervalValueStrategy;
 import metier.Sensor;
 import metier.SensorCell;
 import model.SensorModel;
@@ -27,21 +27,18 @@ public class MainWindowController {
     @FXML
     MenuButton displayType;
     @FXML
-    ComboBox<AlgorithmStrategy> algoChoice;
+    ComboBox<IAlgorithmStrategy> algoChoice;
 
     SensorModel data = new SensorModel();
 
-
-    AlgorithmContext algo = new AlgorithmContext();
-
     public void initialize() {
-
-
-        //sensorListView
+        //sensors
         sensorListView.itemsProperty().bind(data.sensorProperty());
         sensorListView.setCellFactory(param -> new SensorCell());
+        sensorListView.setPrefWidth(230);
+        sensorListView.setPrefHeight(200);
 
-/*
+        /*
         sensorListView.setCellFactory((param) -> {
             return new ListCell<Sensor>(){
                 @Override
@@ -67,18 +64,10 @@ public class MainWindowController {
             }
         });
 */
-
-        sensorListView.setPrefWidth(230);
-        sensorListView.setPrefHeight(200);
-
         //algorithm context
-        AlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
-        /*switch (algoChoice.getSelectionModel().getSelectedItem())
-        {
-            case
-        }
-        algo.setAlgorithmStrategy();
-    */}
+        IAlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
+        //sensors.getSelectionModel().getSelectedItem().setAlgorithmStrategy(new IntervalValueStrategy());
+    }
 
     public void display() throws IOException {
         DigitalDisplayController digit;

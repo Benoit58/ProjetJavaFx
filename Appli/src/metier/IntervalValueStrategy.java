@@ -1,6 +1,6 @@
 package metier;
 
-public class IntervalValueStrategy implements AlgorithmStrategy {
+public class IntervalValueStrategy implements IAlgorithmStrategy {
 
     //Math.random --> value in [0, 1[
     public int algorithm(){
