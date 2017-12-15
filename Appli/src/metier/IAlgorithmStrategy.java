@@ -1,5 +1,5 @@
 package metier;
 
-public interface AlgorithmStrategy {
+public interface IAlgorithmStrategy {
     public int algorithm();
 }

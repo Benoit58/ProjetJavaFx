@@ -19,4 +19,5 @@ public class SensorModel {
         sensorList.add(new Sensor("Salon", 25, 4));
         sensorList.add(new Sensor("Cuisine", 28, 12));
     }
+
 }

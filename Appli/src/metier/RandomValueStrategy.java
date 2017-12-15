@@ -2,7 +2,7 @@ package metier;
 
 import java.util.Random;
 
-public class RandomValueStrategy implements AlgorithmStrategy {
+public class RandomValueStrategy implements IAlgorithmStrategy {
 
     public int algorithm(){
         Random rand = new Random();

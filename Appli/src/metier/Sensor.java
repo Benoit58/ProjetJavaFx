@@ -4,6 +4,8 @@ import javafx.beans.property.*;
 
 public class Sensor {
 
+    private IAlgorithmStrategy strategy;
+
     private final StringProperty sensorName = new SimpleStringProperty();
         public String getSensorName() {return sensorName.get();}
         public void setSensorName(String name) {this.sensorName.set(name);}
@@ -23,8 +25,17 @@ public class Sensor {
         this.sensorName.set(sensorName);
         this.temp.set(temp);
         this.frequency.set(frequency);
-
     }
+
+    public void setAlgorithmStrategy(IAlgorithmStrategy strategy){
+        this.strategy = strategy;
+    }
+
+    //use the generation strategy
+    private int generateValue(){
+        return strategy.algorithm();
+    }
+
     @Override
     public String toString(){
         return  sensorName + " - temp : " + temp ;

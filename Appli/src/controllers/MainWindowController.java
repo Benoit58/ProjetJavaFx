@@ -2,13 +2,11 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import metier.AlgorithmContext;
-import metier.AlgorithmStrategy;
+import metier.IAlgorithmStrategy;
+import metier.IntervalValueStrategy;
 import metier.Sensor;
 import metier.SensorCell;
 import model.SensorModel;
@@ -24,14 +22,11 @@ public class MainWindowController {
     @FXML
     MenuButton displayType;
     @FXML
-    ComboBox<AlgorithmStrategy> algoChoice;
+    ComboBox<IAlgorithmStrategy> algoChoice;
 
     SensorModel data = new SensorModel();
 
-    AlgorithmContext algo = new AlgorithmContext();
-
     public void initialize() {
-
         //sensors
         sensors.itemsProperty().bind(data.sensorProperty());
         sensors.setCellFactory(param -> new SensorCell());
@@ -39,12 +34,8 @@ public class MainWindowController {
         sensors.setPrefHeight(200);
 
         //algorithm context
-        AlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
-        switch (algoChoice.getSelectionModel().getSelectedItem())
-        {
-            case
-        }
-        algo.setAlgorithmStrategy();
+        IAlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
+        //sensors.getSelectionModel().getSelectedItem().setAlgorithmStrategy(new IntervalValueStrategy());
     }
 
     public void display() throws IOException {

@@ -16,7 +16,7 @@ public class Main extends Application {
             closeProgram(primaryStage);
         });
         try{
-            root.getStylesheets().add(getClass().getResource("/views/application.css").toExternalForm());
+            root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
             primaryStage.setScene(new Scene(root));
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
@@ -27,7 +27,6 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-
     private void closeProgram(Stage window){
         Boolean answer = ConfirmBox.display("QuitWindow","Are you sure you want to exit ?");
         if(answer)
