@@ -29,4 +29,15 @@ public class Sensor {
     public String toString(){
         return  sensorName + " - temp : " + temp ;
     }
+
+
+    SensorThread thread;
+    public void startSensorThread() {
+        thread = new SensorThread(this);
+        this.thread.start();
+    }
+
+    public void stopSensorThead(){
+        thread.interrupt();
+    }
 }

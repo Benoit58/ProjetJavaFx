@@ -1,10 +1,13 @@
 package controllers;
 
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import metier.AlgorithmContext;
@@ -81,10 +84,22 @@ public class MainWindowController {
         DigitalDisplayController digit;
         ThermoDisplayController thermo;
         IconDIsplayController icon;
+
+
+        Stage digitalWindow = new Stage();
+        FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
+        digitalWindow.setScene(new Scene(digitalLoader.load()));
+        digit = digitalLoader.getController();
+        digit.load(sensorListView.getSelectionModel().getSelectedItem());
+        digitalWindow.setResizable(false);
+        digitalWindow.centerOnScreen();
+        digitalWindow.setTitle("Mon capteur");
+        digitalWindow.show();
+
         switch (displayType.getText()) {
 
             case "Digital":
-                Stage digitalWindow = new Stage();
+                /*Stage digitalWindow = new Stage();
                 FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
                 digitalWindow.setScene(new Scene(digitalLoader.load()));
                 digit = digitalLoader.getController();
@@ -92,7 +107,7 @@ public class MainWindowController {
                 digitalWindow.setResizable(false);
                 digitalWindow.centerOnScreen();
                 digitalWindow.setTitle("Mon capteur");
-                digitalWindow.show();
+                digitalWindow.show();*/
                 break;
 
             case "Thermometer":
@@ -109,8 +124,21 @@ public class MainWindowController {
         Stage add = new Stage();
         add.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader addloader = new FXMLLoader(getClass().getResource("/views/addSensor.fxml"));
-        add.setScene(new Scene(addloader.load()));
+        Scene windAdd = new Scene(addloader.load());
+
+        add.setScene(windAdd);
         addSensorController = addloader.getController();
+        windAdd.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(event.getCode().equals(KeyCode.ENTER)) {
+                    addSensorController.addSensor();
+                }
+                if(event.getCode().equals(KeyCode.ESCAPE)) {
+                    addSensorController.quit();
+                }
+            }
+        });
         addSensorController.getSensorModel(data);
         add.setResizable(false);
         add.centerOnScreen();
