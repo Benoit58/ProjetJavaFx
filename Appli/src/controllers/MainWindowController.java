@@ -1,6 +1,7 @@
 package controllers;
 
-import javafx.collections.ObservableList;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +12,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import metier.IAlgorithmStrategy;
-import metier.IntervalValueStrategy;
 import metier.Sensor;
 import metier.SensorCell;
 import model.SensorModel;
@@ -24,48 +24,32 @@ public class MainWindowController {
     private ListView<Sensor> sensorListView;
     @FXML
     Button button_valid;
-    @FXML
-    MenuButton displayType;
-    @FXML
-    ComboBox<IAlgorithmStrategy> algoChoice;
 
-    SensorModel data = new SensorModel();
+    @FXML
+    ComboBox displayChoice;
+    //ComboBox<IAlgorithmStrategy> algoChoice;
+
+
+
+    SensorModel sensorModel = new SensorModel();
+
 
     public void initialize() {
-        //sensors
-        sensorListView.itemsProperty().bind(data.sensorProperty());
-        sensorListView.setCellFactory(param -> new SensorCell());
-        sensorListView.setPrefWidth(230);
-        sensorListView.setPrefHeight(200);
 
-        /*
-        sensorListView.setCellFactory((param) -> {
-            return new ListCell<Sensor>(){
-                @Override
-                protected void updateItem(Sensor sensor, boolean empty) {
-                    super.updateItem(sensor, empty);
-                    if (item == null || empty ) {
-                        textProperty().bind(sensor.sensorNameProperty());
-                    } else {
-                        textProperty().unbind();
-                        setText(null);
-                        setStyle("");
-                    }
-                }
-            };
-        });
-        sensorListView.getSelectionModel().selectedItemProperty().addListener((o,oldValue,newValue)->{
-            if (old != null) {
-                sensorName.textProperty().unbindBidirectional(oldValue.sensorNameProperty());
 
-            }
-            if (newV != null) {
-                sensorName.textProperty().bindBidirectional(oldValue.sensorNameProperty());
-            }
-        });
-*/
+
+
+        sensorListView.itemsProperty().bind(sensorModel.sensorProperty());
+
+        sensorListView.setCellFactory(param -> new SensorCell(sensorModel));
+        sensorListView.getSelectionModel().selectFirst();
+
+
+        //sensorListView.setPrefWidth(230);
+        //sensorListView.setPrefHeight(200);
+
         //algorithm context
-        IAlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
+        //IAlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
         //sensors.getSelectionModel().getSelectedItem().setAlgorithmStrategy(new IntervalValueStrategy());
     }
 
@@ -74,21 +58,16 @@ public class MainWindowController {
         ThermoDisplayController thermo;
         IconDIsplayController icon;
 
+        String choice = null;
+        try {
+            choice = displayChoice.getValue().toString();
+        }
+        catch (NullPointerException e){choice = "Digital";}
 
-        Stage digitalWindow = new Stage();
-        FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
-        digitalWindow.setScene(new Scene(digitalLoader.load()));
-        digit = digitalLoader.getController();
-        digit.load(sensorListView.getSelectionModel().getSelectedItem());
-        digitalWindow.setResizable(false);
-        digitalWindow.centerOnScreen();
-        digitalWindow.setTitle("Mon capteur");
-        digitalWindow.show();
-
-        switch (displayType.getText()) {
+        switch (choice) {
 
             case "Digital":
-                /*Stage digitalWindow = new Stage();
+                Stage digitalWindow = new Stage();
                 FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
                 digitalWindow.setScene(new Scene(digitalLoader.load()));
                 digit = digitalLoader.getController();
@@ -96,13 +75,33 @@ public class MainWindowController {
                 digitalWindow.setResizable(false);
                 digitalWindow.centerOnScreen();
                 digitalWindow.setTitle("Mon capteur");
-                digitalWindow.show();*/
+                digitalWindow.show();
                 break;
 
             case "Thermometer":
+
+                Stage thermometerWindow = new Stage();
+                FXMLLoader thermometerLoader = new FXMLLoader(getClass().getResource("/views/thermoDisplay.fxml"));
+                thermometerWindow.setScene(new Scene(thermometerLoader.load()));
+                thermo = thermometerLoader.getController();
+                thermo.load(sensorListView.getSelectionModel().getSelectedItem());
+                thermometerWindow.setResizable(false);
+                thermometerWindow.centerOnScreen();
+                thermometerWindow.setTitle("Mon capteur");
+                thermometerWindow.show();
+
                 break;
 
-            case "Icons":
+            case "Icon":
+                Stage iconWindow = new Stage();
+                FXMLLoader iconLoader = new FXMLLoader(getClass().getResource("/views/iconDisplay.fxml"));
+                iconWindow.setScene(new Scene(iconLoader.load()));
+                icon = iconLoader.getController();
+                icon.load(sensorListView.getSelectionModel().getSelectedItem());
+                iconWindow.setResizable(false);
+                iconWindow.centerOnScreen();
+                iconWindow.setTitle("Mon capteur");
+                iconWindow.show();
                 break;
 
         }
@@ -128,13 +127,14 @@ public class MainWindowController {
                 }
             }
         });
-        addSensorController.getSensorModel(data);
+        addSensorController.getSensorModel(sensorModel);
         add.setResizable(false);
         add.centerOnScreen();
 
         add.setTitle("Add new sensor");
         add.show();
     }
+
 
 }
 
