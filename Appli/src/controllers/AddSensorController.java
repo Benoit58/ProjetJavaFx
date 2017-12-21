@@ -32,13 +32,13 @@ public class AddSensorController {
     @FXML
     public Button addButton;
 
-    SensorModel data;
+    SensorModel sensorModel;
 
     public void addSensor(){
         if(name.getText().isEmpty()|| frequency.getText().isEmpty() || temp.getText().isEmpty()){
             errorMessage.setVisible(true);
         }else{
-            data.getSensors().add(new Sensor(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
+            sensorModel.getSensors().add(new Sensor(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
             quit();
         }
     }
@@ -48,9 +48,9 @@ public class AddSensorController {
         stage.close();
     }
 
-    public void getSensorModel(SensorModel dataModel)
+    public void getSensorModel(SensorModel sensorModel)
     {
-        data = dataModel;
+        this.sensorModel = sensorModel;
     }
 
 

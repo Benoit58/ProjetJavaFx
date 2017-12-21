@@ -48,7 +48,12 @@ public class Sensor {
         this.thread.start();
     }
 
-    public void stopSensorThead(){
+    public SensorThread getThread() {
+        return thread;
+    }
+
+    public void stopSensorThread(){
         thread.interrupt();
+        thread = null;
     }
 }

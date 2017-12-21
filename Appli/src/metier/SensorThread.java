@@ -1,5 +1,9 @@
 package metier;
 
+import javafx.application.Platform;
+
+import java.util.Random;
+
 public class SensorThread extends Thread {
     private  Sensor sensor;
 
@@ -8,13 +12,12 @@ public class SensorThread extends Thread {
         this.sensor=sensor;
     }
 
-
+    Random rand = new Random();
     @Override
     public void run() {
         while (true){
 
-
-            sensor.setTemperature(sensor.getTemperature()+1);
+            Platform.runLater(() -> sensor.setTemperature(sensor.getTemperature()+rand.nextInt(4)-2));
             try {
                 Thread.sleep(1000*sensor.getFrequency());
             } catch (InterruptedException e) {
