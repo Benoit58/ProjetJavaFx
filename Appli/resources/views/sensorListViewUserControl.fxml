@@ -26,7 +26,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-             <ComboBox promptText="Algo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
+             <ComboBox fx:id="algoBox" promptText="Algo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1">
                  <items>
                      <FXCollections fx:factory="observableArrayList">
                          <String fx:value="Random" />

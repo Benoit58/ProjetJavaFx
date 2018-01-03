@@ -1,7 +1,5 @@
 package controllers;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +9,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import metier.IAlgorithmStrategy;
 import metier.Sensor;
 import metier.SensorCell;
 import model.SensorModel;
@@ -24,33 +21,17 @@ public class MainWindowController {
     private ListView<Sensor> sensorListView;
     @FXML
     Button button_valid;
-
     @FXML
     ComboBox displayChoice;
-    //ComboBox<IAlgorithmStrategy> algoChoice;
-
-
 
     SensorModel sensorModel = new SensorModel();
 
-
     public void initialize() {
-
-
-
-
         sensorListView.itemsProperty().bind(sensorModel.sensorProperty());
-
         sensorListView.setCellFactory(param -> new SensorCell(sensorModel));
         sensorListView.getSelectionModel().selectFirst();
-
-
         //sensorListView.setPrefWidth(230);
         //sensorListView.setPrefHeight(200);
-
-        //algorithm context
-        //IAlgorithmStrategy algoSelected = algoChoice.getSelectionModel().getSelectedItem();
-        //sensors.getSelectionModel().getSelectedItem().setAlgorithmStrategy(new IntervalValueStrategy());
     }
 
     public void display() throws IOException {
@@ -64,7 +45,7 @@ public class MainWindowController {
         }
         catch (NullPointerException e){choice = "Digital";}
 
-        switch (choice) {
+        switch(choice){
 
             case "Digital":
                 Stage digitalWindow = new Stage();
@@ -103,7 +84,6 @@ public class MainWindowController {
                 iconWindow.setTitle("Mon capteur");
                 iconWindow.show();
                 break;
-
         }
     }
 
@@ -134,7 +114,6 @@ public class MainWindowController {
         add.setTitle("Add new sensor");
         add.show();
     }
-
 
 }
 

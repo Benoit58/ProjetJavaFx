@@ -1,29 +1,32 @@
 package metier;
 
 import javafx.application.Platform;
+import metier.algorithm.IAlgorithmStrategy;
 
-import java.util.Random;
-
-public class SensorThread extends Thread {
+public class SensorThread extends Thread implements Runnable{
     private  Sensor sensor;
+    private IAlgorithmStrategy generator;
 
-
-    public SensorThread(Sensor sensor){
-        this.sensor=sensor;
+    public SensorThread(Sensor sensor, IAlgorithmStrategy generator){
+        this.sensor = sensor;
+        this.generator = generator;
     }
 
-    Random rand = new Random();
     @Override
     public void run() {
         while (true){
-
-            Platform.runLater(() -> sensor.setTemperature(sensor.getTemperature()+rand.nextInt(4)-2));
             try {
-                Thread.sleep(1000*sensor.getFrequency());
+                sleep(sensor.getFrequency()*1000);
             } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
                 break;
             }
-
+            if(generator == null){
+                Platform.runLater(() -> sensor.setTemperature(sensor.getTemperature() -1 ));
+            }
+            else{
+                Platform.runLater(() -> sensor.setTemperature(generator.algorithm()));
+            }
         }
     }
 }

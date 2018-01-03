@@ -1,10 +1,11 @@
 package metier;
 
 import javafx.beans.property.*;
+import metier.algorithm.IAlgorithmStrategy;
 
 public class Sensor {
 
-    private IAlgorithmStrategy strategy;
+    SensorThread thread;
 
     private final StringProperty sensorName = new SimpleStringProperty();
         public String getSensorName() {return sensorName.get();}
@@ -21,30 +22,15 @@ public class Sensor {
         public void setFrequency(int freq) {this.frequency.set(freq);}
         public IntegerProperty frequencyProperty(){return frequency;}
 
-    public Sensor(String sensorName, int temp, int frequency) {
+    public Sensor(String sensorName, int temp, int frequency){
         this.sensorName.set(sensorName);
         this.temp.set(temp);
         this.frequency.set(frequency);
     }
 
-    public void setAlgorithmStrategy(IAlgorithmStrategy strategy){
-        this.strategy = strategy;
-    }
-
-    //use the generation strategy
-    private int generateValue(){
-        return strategy.algorithm();
-    }
-
-    @Override
-    public String toString(){
-        return  sensorName + " - temp : " + temp ;
-    }
-
-
-    SensorThread thread;
-    public void startSensorThread() {
-        thread = new SensorThread(this);
+    public void startSensorThread(IAlgorithmStrategy generator){
+        this.setTemperature(generator.algorithm());
+        thread = new SensorThread(this, generator);
         this.thread.start();
     }
 
@@ -56,4 +42,10 @@ public class Sensor {
         thread.interrupt();
         thread = null;
     }
+
+    @Override
+    public String toString(){
+        return  sensorName + " - temp : " + temp ;
+    }
+
 }
