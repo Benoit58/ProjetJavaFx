@@ -5,6 +5,7 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.shape.Rectangle;
+import metier.ISensors;
 import metier.Sensor;
 
 public class ThermoDisplayController {
@@ -24,7 +25,7 @@ public class ThermoDisplayController {
     Label sensorName;
 
 
-    public void load(Sensor sensor){
+    public void load(ISensors sensor){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         tempLabel.textProperty().bind((sensor.temperatureProperty().asString()));
         rectangleLabel.heightProperty().bind(sensor.temperatureProperty().multiply(90).divide(200).add(45));

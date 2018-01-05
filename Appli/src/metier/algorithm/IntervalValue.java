@@ -1,13 +1,14 @@
 package metier.algorithm;
 
+import metier.ISensors;
 import metier.Sensor;
 import metier.SensorThread;
 
 public class IntervalValue implements IAlgorithmStrategy {
 
-    Sensor sensor;
+    ISensors sensor;
 
-    public IntervalValue(Sensor sensor){
+    public IntervalValue(ISensors sensor){
         this.sensor = sensor;
     }
 

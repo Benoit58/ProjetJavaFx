@@ -1,5 +1,9 @@
 package controllers;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import metier.ISensors;
+import metier.Manager;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,20 +22,25 @@ import java.io.IOException;
 public class MainWindowController {
 
     @FXML
-    private ListView<Sensor> sensorListView;
+    private ListView<ISensors> sensorListView;
     @FXML
     Button button_valid;
     @FXML
     ComboBox displayChoice;
 
-    SensorModel sensorModel = new SensorModel();
+    private final ObjectProperty<Manager> manager = new SimpleObjectProperty<>(new Manager());
+        public Manager getManager() {return manager.get();}
+        public void setManager(Manager m){manager.set(m);}
+        public ObjectProperty<Manager> managerProperty() { return manager; }
 
     public void initialize() {
-        sensorListView.itemsProperty().bind(sensorModel.sensorProperty());
-        sensorListView.setCellFactory(param -> new SensorCell(sensorModel));
-        sensorListView.getSelectionModel().selectFirst();
-        //sensorListView.setPrefWidth(230);
-        //sensorListView.setPrefHeight(200);
+        sensorListView.itemsProperty().bind(getManager().sensorsProperty());
+        sensorListView.setCellFactory((param) -> new SensorCell(getManager().getSensors()));
+        sensorListView.getSelectionModel().selectedItemProperty().addListener((o, old, newV) -> getListViewSensorsListener(old, newV));
+    }
+
+    private void getListViewSensorsListener(ISensors old, ISensors newV){
+
     }
 
     public void display() throws IOException {
@@ -107,7 +116,7 @@ public class MainWindowController {
                 }
             }
         });
-        addSensorController.getSensorModel(sensorModel);
+        addSensorController.getSensorModel(getManager().getSensors());
         add.setResizable(false);
         add.centerOnScreen();
 

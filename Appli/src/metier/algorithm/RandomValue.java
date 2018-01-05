@@ -1,5 +1,6 @@
 package metier.algorithm;
 
+import metier.ISensors;
 import metier.Sensor;
 import metier.SensorThread;
 
@@ -7,9 +8,9 @@ import java.util.Random;
 
 public class RandomValue implements IAlgorithmStrategy {
 
-    Sensor sensor;
+    ISensors sensor;
 
-    public RandomValue(Sensor sensor){ this.sensor = sensor; }
+    public RandomValue(ISensors sensor){ this.sensor = sensor; }
 
     public long getFrequency(){
         return sensor.getFrequency();

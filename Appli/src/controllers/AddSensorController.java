@@ -1,5 +1,6 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -7,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import metier.ISensors;
 import metier.Sensor;
 import model.SensorModel;
 
@@ -32,13 +34,13 @@ public class AddSensorController {
     @FXML
     public Button addButton;
 
-    SensorModel sensorModel;
+    ObservableList<ISensors> sensorModel;
 
     public void addSensor(){
         if(name.getText().isEmpty()|| frequency.getText().isEmpty() || temp.getText().isEmpty()){
             errorMessage.setVisible(true);
         }else{
-            sensorModel.getSensors().add(new Sensor(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
+            sensorModel.add(new Sensor(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
             quit();
         }
     }
@@ -48,7 +50,7 @@ public class AddSensorController {
         stage.close();
     }
 
-    public void getSensorModel(SensorModel sensorModel)
+    public void getSensorModel(ObservableList<ISensors> sensorModel)
     {
         this.sensorModel = sensorModel;
     }

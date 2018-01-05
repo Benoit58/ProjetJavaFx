@@ -1,5 +1,6 @@
 package metier.algorithm;
 
+import metier.ISensors;
 import metier.Sensor;
 import metier.SensorThread;
 
@@ -8,10 +9,11 @@ import java.util.Random;
 import static java.lang.Math.abs;
 
 public class FenetreGlissante implements IAlgorithmStrategy {
-    Sensor sensor;
+
+    ISensors sensor;
     int coef;
 
-    public FenetreGlissante(Sensor sensor, int coef){
+    public FenetreGlissante(ISensors sensor, int coef){
         this.sensor = sensor;
         this.coef = coef;
     }

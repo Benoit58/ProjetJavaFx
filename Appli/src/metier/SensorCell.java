@@ -1,21 +1,19 @@
 package metier;
 
 import controllers.SensorListViewUserControlController;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.*;
-import model.SensorModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SensorCell extends ListCell<Sensor> {
+public class SensorCell extends ListCell<ISensors> {
 
     private static final double IMAGE_HEIGHT = 36;
-
     private static final Image SENSOR_IMG = new Image("/img/sensor.png", 0, IMAGE_HEIGHT, true, true);
 
     private ImageView imageView = new ImageView();
@@ -24,8 +22,7 @@ public class SensorCell extends ListCell<Sensor> {
     private SensorListViewUserControlController rendererController;
 
 
-
-    public SensorCell(SensorModel sensorModel){
+    public SensorCell(ObservableList<ISensors> sensorModel){
         super();
         // Chargement du FXML.
         try {
@@ -41,7 +38,7 @@ public class SensorCell extends ListCell<Sensor> {
 
 
     @Override
-    protected void updateItem(Sensor item, boolean empty) {
+    protected void updateItem(ISensors item, boolean empty) {
         super.updateItem(item, empty);
         String text = null;
         Node graphic = null;
@@ -55,13 +52,9 @@ public class SensorCell extends ListCell<Sensor> {
             //setGraphic(imageView);
 
             graphic = renderer;
-
             rendererController.setLabel(item.getSensorName());
             rendererController.setSensor(item);
-
             setGraphic(graphic);
-
         }
     }
 }
-

@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import metier.ISensors;
 import metier.Sensor;
 
 
@@ -20,7 +21,7 @@ public class IconDIsplayController {
     @FXML
     ImageView icon;
 
-    public void load(Sensor sensor){
+    public void load(ISensors sensor){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         sensor.temperatureProperty().addListener((o,oldV,newV)->{
             if ((int) newV < 0) icon.setImage(snowflake);

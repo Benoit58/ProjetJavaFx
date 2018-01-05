@@ -1,10 +1,12 @@
 package controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import metier.ISensors;
 import metier.Sensor;
 import metier.algorithm.IAlgorithmStrategy;
 import metier.algorithm.FenetreGlissante;
@@ -24,27 +26,25 @@ public class SensorListViewUserControlController {
     Image start = new Image("/img/play.png");
     Image stop = new Image("/img/stop.png");
 
-    SensorModel sensorModel;
-    Sensor sensor;
+    ObservableList<ISensors> sensorModel;
+    ISensors sensor;
 
-    public void sup(){
-        sensorModel.getSensors().remove(sensor);
-    }
+    public void sup(){ sensorModel.remove(sensor); }
 
-    public void setSensorModel(SensorModel sensorModel)
+    public void setSensorModel(ObservableList<ISensors> sensorModel)
     {
         this.sensorModel = sensorModel;
     }
-    public void setSensor(Sensor sensor)
+    public void setSensor(ISensors sensor)
     {
         this.sensor = sensor;
     }
-    public Sensor getSensor(){return this.sensor;}
+    public ISensors getSensor(){return this.sensor;}
 
     public void startAndStopThread(){
         IAlgorithmStrategy generator = null;
-
         String algorithm = null;
+
         try {
             algorithm = algoBox.getValue().toString();
         } catch (NullPointerException e){
@@ -68,7 +68,7 @@ public class SensorListViewUserControlController {
                 break;
         }
 
-        if(sensor.getThread()!=null){
+        if(sensor.getThread() != null){
             state.setImage(start);
             sensor.stopSensorThread();
         }else {
