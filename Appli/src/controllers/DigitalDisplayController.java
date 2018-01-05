@@ -22,6 +22,5 @@ public class DigitalDisplayController {
     public void load(ISensors sensor){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         sensorTemp.textProperty().bind((sensor.temperatureProperty().asString()));
-
     }
 }

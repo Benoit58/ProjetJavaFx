@@ -49,16 +49,12 @@ public class XMLSensors implements ISensors, Serializable {
 
 
     @Override
-    public SensorThread getThread(){return model.getThread();}
+    public SensorThread getThread(){ throw new UnsupportedOperationException();}
 
     @Override
-    public void stopSensorThread(){
-        model.getThread().interrupt();
-    }
+    public void stopSensorThread(){throw new UnsupportedOperationException();}
 
     @Override
-    public void startSensorThread(IAlgorithmStrategy generator){
-
-    }
+    public void startSensorThread(IAlgorithmStrategy generator){throw new UnsupportedOperationException();}
 }
 

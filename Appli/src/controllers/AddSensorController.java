@@ -5,14 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
-import javafx.scene.layout.Border;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import metier.ISensors;
 import metier.Sensor;
-import model.SensorModel;
-
-import java.awt.*;
 
 public class AddSensorController {
 

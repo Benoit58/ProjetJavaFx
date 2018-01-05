@@ -1,9 +1,6 @@
 package controllers;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import metier.ISensors;
-import metier.Manager;
+import metier.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,34 +10,16 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import metier.Sensor;
-import metier.SensorCell;
-import model.SensorModel;
 
 import java.io.IOException;
 
 public class MainWindowController {
 
-    @FXML
-    private ListView<ISensors> sensorListView;
-    @FXML
-    Button button_valid;
-    @FXML
-    ComboBox displayChoice;
-
-    private final ObjectProperty<Manager> manager = new SimpleObjectProperty<>(new Manager());
-        public Manager getManager() {return manager.get();}
-        public void setManager(Manager m){manager.set(m);}
-        public ObjectProperty<Manager> managerProperty() { return manager; }
+    @FXML ListView<ISensors> sensorListView;
+    @FXML ComboBox displayChoice;
 
     public void initialize() {
-        sensorListView.itemsProperty().bind(getManager().sensorsProperty());
-        sensorListView.setCellFactory((param) -> new SensorCell(getManager().getSensors()));
-        sensorListView.getSelectionModel().selectedItemProperty().addListener((o, old, newV) -> getListViewSensorsListener(old, newV));
-    }
-
-    private void getListViewSensorsListener(ISensors old, ISensors newV){
-
+        sensorListView.itemsProperty().bind(Manager.sensorsProperty());
     }
 
     public void display() throws IOException {
@@ -48,51 +27,48 @@ public class MainWindowController {
         ThermoDisplayController thermo;
         IconDIsplayController icon;
 
-        String choice = null;
-        try {
-            choice = displayChoice.getValue().toString();
-        }
-        catch (NullPointerException e){choice = "Digital";}
+        if(displayChoice.getSelectionModel().getSelectedItem() != null && sensorListView.getSelectionModel().getSelectedItem() != null){
 
-        switch(choice){
+            switch(displayChoice.getSelectionModel().getSelectedItem().toString()){
 
-            case "Digital":
-                Stage digitalWindow = new Stage();
-                FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
-                digitalWindow.setScene(new Scene(digitalLoader.load()));
-                digit = digitalLoader.getController();
-                digit.load(sensorListView.getSelectionModel().getSelectedItem());
-                digitalWindow.setResizable(false);
-                digitalWindow.centerOnScreen();
-                digitalWindow.setTitle("Mon capteur");
-                digitalWindow.show();
-                break;
+                case "Digital":
+                    Stage digitalWindow = new Stage();
+                    FXMLLoader digitalLoader = new FXMLLoader(getClass().getResource("/views/digitalDisplay.fxml"));
+                    digitalWindow.setScene(new Scene(digitalLoader.load()));
+                    digit = digitalLoader.getController();
+                    digit.load(sensorListView.getSelectionModel().getSelectedItem());
+                    digitalWindow.setResizable(false);
+                    digitalWindow.centerOnScreen();
+                    digitalWindow.setTitle("Mon capteur");
+                    digitalWindow.show();
+                    break;
 
-            case "Thermometer":
+                case "Thermometer":
 
-                Stage thermometerWindow = new Stage();
-                FXMLLoader thermometerLoader = new FXMLLoader(getClass().getResource("/views/thermoDisplay.fxml"));
-                thermometerWindow.setScene(new Scene(thermometerLoader.load()));
-                thermo = thermometerLoader.getController();
-                thermo.load(sensorListView.getSelectionModel().getSelectedItem());
-                thermometerWindow.setResizable(false);
-                thermometerWindow.centerOnScreen();
-                thermometerWindow.setTitle("Mon capteur");
-                thermometerWindow.show();
+                    Stage thermometerWindow = new Stage();
+                    FXMLLoader thermometerLoader = new FXMLLoader(getClass().getResource("/views/thermoDisplay.fxml"));
+                    thermometerWindow.setScene(new Scene(thermometerLoader.load()));
+                    thermo = thermometerLoader.getController();
+                    thermo.load(sensorListView.getSelectionModel().getSelectedItem());
+                    thermometerWindow.setResizable(false);
+                    thermometerWindow.centerOnScreen();
+                    thermometerWindow.setTitle("Mon capteur");
+                    thermometerWindow.show();
 
-                break;
+                    break;
 
-            case "Icon":
-                Stage iconWindow = new Stage();
-                FXMLLoader iconLoader = new FXMLLoader(getClass().getResource("/views/iconDisplay.fxml"));
-                iconWindow.setScene(new Scene(iconLoader.load()));
-                icon = iconLoader.getController();
-                icon.load(sensorListView.getSelectionModel().getSelectedItem());
-                iconWindow.setResizable(false);
-                iconWindow.centerOnScreen();
-                iconWindow.setTitle("Mon capteur");
-                iconWindow.show();
-                break;
+                case "Icon":
+                    Stage iconWindow = new Stage();
+                    FXMLLoader iconLoader = new FXMLLoader(getClass().getResource("/views/iconDisplay.fxml"));
+                    iconWindow.setScene(new Scene(iconLoader.load()));
+                    icon = iconLoader.getController();
+                    icon.load(sensorListView.getSelectionModel().getSelectedItem());
+                    iconWindow.setResizable(false);
+                    iconWindow.centerOnScreen();
+                    iconWindow.setTitle("Mon capteur");
+                    iconWindow.show();
+                    break;
+            }
         }
     }
 
@@ -105,18 +81,15 @@ public class MainWindowController {
 
         add.setScene(windAdd);
         addSensorController = addloader.getController();
-        windAdd.setOnKeyPressed(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent event) {
-                if(event.getCode().equals(KeyCode.ENTER)) {
-                    addSensorController.addSensor();
-                }
-                if(event.getCode().equals(KeyCode.ESCAPE)) {
-                    addSensorController.quit();
-                }
+        windAdd.setOnKeyPressed(event -> {
+            if(event.getCode().equals(KeyCode.ENTER)) {
+                addSensorController.addSensor();
+            }
+            if(event.getCode().equals(KeyCode.ESCAPE)) {
+                addSensorController.quit();
             }
         });
-        addSensorController.getSensorModel(getManager().getSensors());
+        addSensorController.getSensorModel(Manager.getSensors());
         add.setResizable(false);
         add.centerOnScreen();
 

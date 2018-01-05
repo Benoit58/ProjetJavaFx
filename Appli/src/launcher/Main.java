@@ -12,8 +12,6 @@ import persistence.stub.StubDataManager;
 
 public class Main extends Application {
 
-    private Manager manager;
-
     @Override
     public void start(Stage primaryStage) throws Exception{
 
@@ -34,9 +32,6 @@ public class Main extends Application {
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Application");
         primaryStage.show();
-
-        //on assigne le manager au controller
-        controller.setManager(manager);
     }
 
     private void closeProgram(Stage window){
@@ -47,18 +42,17 @@ public class Main extends Application {
     }
 
     private void loadSensors(){
-        manager = new Manager(new XMLDataManager());
-
-        //si il n'y a pas de sensors de chargés, on load la stub
-        if(manager.getSensors().isEmpty()) {
-            manager.setDataManager(new StubDataManager());
-            manager.loadSensors();
+        Manager.setDataManager(new XMLDataManager());
+        Manager.loadSensors();
+        if(Manager.getSensors().isEmpty()){
+            Manager.setDataManager(new StubDataManager());
+            Manager.loadSensors();
         }
     }
 
     private void saveSensors(){
-        manager.setDataManager(new XMLDataManager());
-        manager.writeSensors();
+        Manager.setDataManager(new XMLDataManager());
+        Manager.writeSensors();
     }
 
     @Override

@@ -7,12 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import metier.ISensors;
+import metier.Manager;
 import metier.Sensor;
 import metier.algorithm.IAlgorithmStrategy;
 import metier.algorithm.FenetreGlissante;
 import metier.algorithm.IntervalValue;
 import metier.algorithm.RandomValue;
-import model.SensorModel;
 
 public class SensorListViewUserControlController {
 
@@ -26,20 +26,20 @@ public class SensorListViewUserControlController {
     Image start = new Image("/img/play.png");
     Image stop = new Image("/img/stop.png");
 
-    ObservableList<ISensors> sensorModel;
-    ISensors sensor;
+    ISensors context;
 
-    public void sup(){ sensorModel.remove(sensor); }
+    public void sup(){
+        Manager.getSensors().remove(context); }
 
-    public void setSensorModel(ObservableList<ISensors> sensorModel)
+    public void setSensorModel(ISensors sensor)
     {
-        this.sensorModel = sensorModel;
+        this.context = sensor;
     }
     public void setSensor(ISensors sensor)
     {
-        this.sensor = sensor;
+        this.context = sensor;
     }
-    public ISensors getSensor(){return this.sensor;}
+    public ISensors getSensor(){return this.context;}
 
     public void startAndStopThread(){
         IAlgorithmStrategy generator = null;
@@ -52,11 +52,11 @@ public class SensorListViewUserControlController {
         }
         switch(algorithm){
             case "Random" :
-                generator = new RandomValue(sensor);
+                generator = new RandomValue(context);
                 break;
 
             case "Interval" :
-                generator = new IntervalValue(sensor);
+                generator = new IntervalValue(context);
                 break;
 
             case "RandInterval" :
@@ -68,11 +68,11 @@ public class SensorListViewUserControlController {
                 break;
         }
 
-        if(sensor.getThread() != null){
+        if(context.getThread() != null){
             state.setImage(start);
-            sensor.stopSensorThread();
+            context.stopSensorThread();
         }else {
-            sensor.startSensorThread(generator);
+            context.startSensorThread(generator);
             state.setImage(stop);
         }
     }

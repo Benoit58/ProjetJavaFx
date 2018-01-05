@@ -22,7 +22,7 @@ public class SensorCell extends ListCell<ISensors> {
     private SensorListViewUserControlController rendererController;
 
 
-    public SensorCell(ObservableList<ISensors> sensorModel){
+    public SensorCell(){
         super();
         // Chargement du FXML.
         try {
@@ -30,7 +30,7 @@ public class SensorCell extends ListCell<ISensors> {
             final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
             renderer = fxmlLoader.load();
             rendererController =  fxmlLoader.getController();
-            rendererController.setSensorModel(sensorModel);
+            rendererController.setSensorModel(getItem());
         } catch (IOException ex) {
             Logger.getLogger(SensorCell.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
