@@ -1,11 +1,11 @@
-package cellFactory;
+package metier.cellFactory;
 
 import controllers.SensorListViewUserControlController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.*;
-import metier.ISensors;
+import metier.sensor.ISensors;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,10 +47,6 @@ public class SensorCell extends ListCell<ISensors> {
             setGraphic(null);
             setText(null);
         } else {
-            //imageView.setImage(SENSOR_IMG);
-            //setText(item.getSensorName());
-            //setGraphic(imageView);
-
             graphic = renderer;
             rendererController.setLabel(item.getSensorName());
             rendererController.setSensor(item);

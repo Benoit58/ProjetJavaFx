@@ -1,9 +1,9 @@
-package persistence.xml;
+package metier.persistence.xml;
 
 import javafx.beans.property.*;
-import metier.ISensors;
-import metier.SensorThread;
-import metier.SensorsFactory;
+import metier.sensor.ISensors;
+import metier.sensor.SensorThread;
+import metier.sensor.SensorsFactory;
 import metier.algorithm.IAlgorithmStrategy;
 
 import java.io.*;

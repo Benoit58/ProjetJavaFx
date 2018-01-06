@@ -6,9 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import metier.SensorsManager;
-import persistence.stub.StubSensors;
-import persistence.xml.XMLDataManager;
+import metier.sensor.SensorsManager;
+import metier.persistence.stub.StubSensors;
+import metier.persistence.xml.XMLDataManager;
 
 public class Main extends Application {
 
@@ -28,7 +28,7 @@ public class Main extends Application {
         MainWindowController controller = fxmlLoader.getController();
         root.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
         primaryStage.setScene(new Scene(root));
-        //primaryStage.setResizable(false);
+        primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.setTitle("Application");
         primaryStage.show();

@@ -1,33 +1,35 @@
 package controllers;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import metier.ISensors;
-import metier.Sensor;
+import metier.sensor.ISensors;
 
-public class ThermoDisplayController {
-    @FXML
-    Label maxLabel;
+import java.io.IOException;
 
-    @FXML
-    Label tempLabel;
+public class ThermoDisplayController extends GridPane {
 
-    @FXML
-    Label minLabel;
+    @FXML Label maxLabel;
+    @FXML Label tempLabel;
+    @FXML Label minLabel;
+    @FXML Rectangle rectangle;
+    @FXML Label sensorName;
 
-    @FXML
-    Rectangle rectangleLabel;
+    private ISensors sensor;
 
-    @FXML
-    Label sensorName;
+    public ThermoDisplayController(ISensors sensor) throws IOException{
+        this.sensor = sensor;
+        FXMLLoader Loader = new FXMLLoader(getClass().getResource("/ihm/ThermoDisplay.fxml"));
+        Loader.setController(this);
+        Loader.setRoot(this);
+        Loader.load();
+    }
 
-
-    public void load(ISensors sensor){
+    public void initialize(){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         tempLabel.textProperty().bind((sensor.temperatureProperty().asString()));
-        rectangleLabel.heightProperty().bind(sensor.temperatureProperty().multiply(90).divide(200).add(45));
+        rectangle.heightProperty().bind(sensor.temperatureProperty().multiply(90).divide(200).add(45));
     }
 }

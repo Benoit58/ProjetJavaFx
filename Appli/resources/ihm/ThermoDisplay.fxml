@@ -12,7 +12,7 @@
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.shape.Rectangle?>
 
-<GridPane prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ThermoDisplayController">
+<fx:root prefHeight="150.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" type="GridPane">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -50,7 +50,7 @@
             <Insets />
          </GridPane.margin>
       </HBox>
-      <Rectangle fx:id="rectangleLabel" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
+      <Rectangle fx:id="rectangle" arcHeight="5.0" arcWidth="5.0" fill="RED" height="30.0" stroke="TRANSPARENT" strokeType="INSIDE" width="15.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="BOTTOM">
          <GridPane.margin>
             <Insets />
          </GridPane.margin>
@@ -76,4 +76,4 @@
          </GridPane.margin>
       </Label>
    </children>
-</GridPane>
+</fx:root>

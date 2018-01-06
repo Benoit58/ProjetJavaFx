@@ -1,8 +1,8 @@
-package persistence.stub;
+package metier.persistence.stub;
 
-import metier.ISensors;
-import metier.SensorsFactory;
-import persistence.DataManager;
+import metier.sensor.ISensors;
+import metier.sensor.SensorsFactory;
+import metier.persistence.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;

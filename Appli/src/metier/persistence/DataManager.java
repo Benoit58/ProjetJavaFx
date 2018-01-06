@@ -1,13 +1,11 @@
-package persistence;
+package metier.persistence;
 
-import javafx.collections.ObservableList;
-import metier.ISensors;
-import metier.Sensor;
+import metier.sensor.ISensors;
 
 import java.util.List;
 
 /**
- * Public interface for persistence management : serialisation
+ * Public interface for metier.persistence management : serialisation
  *
  * @author Yannis MAHIOU and Benoit LOUVEAU
  */

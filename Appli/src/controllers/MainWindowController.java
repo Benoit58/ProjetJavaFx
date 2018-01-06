@@ -1,11 +1,9 @@
 package controllers;
 
-import display.DigitalDisplay;
-import display.Display;
-import cellFactory.DisplayChoiceFactory;
-import display.IconDisplay;
-import display.ThermoDisplay;
-import metier.*;
+import javafx.scene.layout.FlowPane;
+import metier.cellFactory.DisplayChoiceFactory;
+import metier.sensor.ISensors;
+import metier.sensor.SensorsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,47 +16,46 @@ import java.io.IOException;
 
 public class MainWindowController {
 
-    Display display;
-
     @FXML ListView<ISensors> sensorListView;
     @FXML ComboBox displayChoice;
     @FXML Button button_valid;
-
+    @FXML FlowPane panes;
 
     public void initialize() {
         sensorListView.itemsProperty().bind(SensorsManager.sensorsProperty());
         displayChoice.setItems(DisplayChoiceFactory.comboList);
+        panes.setPrefWrapLength(450);
     }
 
+    @FXML
     public void display() throws IOException{
-        if(displayChoice.getSelectionModel().getSelectedItem() != null && sensorListView.getSelectionModel().getSelectedItem() != null){
-            switch(displayChoice.getSelectionModel().getSelectedItem().toString()){
-                case "Digital" :
-                    display = new DigitalDisplay();
-                    display.display(sensorListView.getSelectionModel().getSelectedItem());
-                    break;
+            if(displayChoice.getSelectionModel().getSelectedItem() != null && sensorListView.getSelectionModel().getSelectedItem() != null){
+                switch(displayChoice.getSelectionModel().getSelectedItem().toString()){
+                    case "Digital" :
+                        panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        break;
 
-                case "Thermo" :
-                    display = new ThermoDisplay();
-                    display.display(sensorListView.getSelectionModel().getSelectedItem());
-                    break;
+                    case "Thermo" :
+                        panes.getChildren().add(new ThermoDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        break;
 
-                case "Icon" :
-                    display = new IconDisplay();
-                    display.display(sensorListView.getSelectionModel().getSelectedItem());
-                    break;
+                    case "Icon" :
+                        panes.getChildren().add(new IconDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        break;
 
-                default :
-                    throw new UnsupportedOperationException("ERROR");
+                    default :
+                        throw new UnsupportedOperationException("ERROR");
+                }
+
             }
-        }
     }
+
 
     public void addSensor()  throws IOException{
         AddSensorController addSensorController;
         Stage add = new Stage();
         add.initModality(Modality.APPLICATION_MODAL);
-        FXMLLoader addloader = new FXMLLoader(getClass().getResource("/ihm/addSensor.fxml"));
+        FXMLLoader addloader = new FXMLLoader(getClass().getResource("/ihm/AddSensor.fxml"));
         Scene windAdd = new Scene(addloader.load());
 
         add.setScene(windAdd);

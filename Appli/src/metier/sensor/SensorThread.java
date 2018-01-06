@@ -1,4 +1,4 @@
-package metier;
+package metier.sensor;
 
 import javafx.application.Platform;
 import metier.algorithm.IAlgorithmStrategy;
@@ -22,7 +22,7 @@ public class SensorThread extends Thread implements Runnable{
                 break;
             }
             if(generator == null){
-                Platform.runLater(() -> sensor.setTemperature(sensor.getTemperature() -1 ));
+                Platform.runLater(() -> sensor.setTemperature(sensor.getTemperature() - 1 ));
             }
             else{
                 Platform.runLater(() -> sensor.setTemperature(generator.algorithm()));

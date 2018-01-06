@@ -1,27 +1,36 @@
 package controllers;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import metier.ISensors;
-import metier.Sensor;
+import javafx.scene.layout.GridPane;
+import metier.sensor.ISensors;
+
+import java.io.IOException;
 
 
-public class IconDisplayController {
-    Image sun=new Image("/img/sun.png");
-    Image cloud=new Image("/img/cloud.png");
-    Image snowflake=new Image("/img/snowflake.png");
+public class IconDisplayController extends GridPane {
 
-    @FXML
-    Label sensorName;
+    private Image sun=new Image("/img/sun.png");
+    private Image cloud=new Image("/img/cloud.png");
+    private Image snowflake=new Image("/img/snowflake.png");
 
-    @FXML
-    ImageView icon;
+    @FXML Label sensorName;
+    @FXML ImageView icon;
 
-    public void load(ISensors sensor){
+    private ISensors sensor;
+
+    public IconDisplayController(ISensors sensor) throws IOException{
+        this.sensor = sensor;
+        FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/IconDisplay.fxml"));
+        leLoader.setController(this);
+        leLoader.setRoot(this);
+        leLoader.load();
+    }
+
+    public void initialize(){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         sensor.temperatureProperty().addListener((o,oldV,newV)->{
             if ((int) newV < 0) icon.setImage(snowflake);

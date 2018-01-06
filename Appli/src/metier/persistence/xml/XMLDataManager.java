@@ -1,7 +1,7 @@
-package persistence.xml;
+package metier.persistence.xml;
 
-import metier.ISensors;
-import persistence.DataManager;
+import metier.sensor.ISensors;
+import metier.persistence.DataManager;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;

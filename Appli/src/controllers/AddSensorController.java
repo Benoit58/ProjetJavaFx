@@ -6,8 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import metier.ISensors;
-import metier.Sensor;
+import metier.sensor.ISensors;
+import metier.sensor.Sensor;
 
 public class AddSensorController {
 

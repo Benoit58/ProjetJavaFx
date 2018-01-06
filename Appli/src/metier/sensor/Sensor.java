@@ -1,7 +1,8 @@
-package metier;
+package metier.sensor;
 
-import javafx.beans.property.*;
 import metier.algorithm.IAlgorithmStrategy;
+import javafx.beans.property.*;
+
 
 public class Sensor implements ISensors{
 

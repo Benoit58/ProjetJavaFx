@@ -1,4 +1,4 @@
-package metier;
+package metier.sensor;
 
 public class SensorsFactory {
 

@@ -1,17 +1,17 @@
-package metier;
+package metier.sensor;
 
 
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import persistence.DataManager;
+import metier.persistence.DataManager;
 
 /**
  * Façade de la partie Metier
  */
 public class SensorsManager {
-    
+
     private static DataManager dataManager;
 
     private static final ListProperty<ISensors> sensorsCollection = new SimpleListProperty<>();

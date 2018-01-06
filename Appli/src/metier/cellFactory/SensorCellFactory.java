@@ -1,9 +1,9 @@
-package cellFactory;
+package metier.cellFactory;
 
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
-import metier.ISensors;
+import metier.sensor.ISensors;
 
 public class SensorCellFactory implements Callback<ListView<ISensors>,ListCell<ISensors>> {
 

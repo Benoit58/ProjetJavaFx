@@ -1,25 +1,36 @@
 package controllers;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import metier.ISensors;
-import metier.Sensor;
-import java.awt.*;
+import javafx.scene.layout.GridPane;
+import metier.sensor.ISensors;
 
-public class DigitalDisplayController {
+import java.io.IOException;
+
+public class DigitalDisplayController extends GridPane {
+
+    @FXML Label sensorName;
+    @FXML Label sensorTemp;
+    @FXML Button deleteButton;
+
+    private ISensors sensor;
+
+    public DigitalDisplayController(ISensors sensor) throws IOException {
+        this.sensor = sensor;
+        FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/DigitalDisplay.fxml"));
+        leLoader.setController(this);
+        leLoader.setRoot(this);
+        leLoader.load();
+    }
 
     @FXML
-    Label sensorName;
+    public void closeDisplay(){
+        this.setVisible(false);
+    }
 
-    @FXML
-    Label sensorTemp;
-
-    public void load(ISensors sensor){
+    public void initialize(){
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         sensorTemp.textProperty().bind((sensor.temperatureProperty().asString()));
     }

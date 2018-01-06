@@ -1,4 +1,4 @@
-package metier;
+package metier.sensor;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;

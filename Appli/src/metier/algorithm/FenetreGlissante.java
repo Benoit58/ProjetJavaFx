@@ -1,8 +1,6 @@
 package metier.algorithm;
 
-import metier.ISensors;
-import metier.Sensor;
-import metier.SensorThread;
+import metier.sensor.ISensors;
 
 import java.util.Random;
 

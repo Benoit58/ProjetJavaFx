@@ -8,13 +8,12 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import cellFactory.SensorCellFactory?>
+<?import metier.cellFactory.SensorCellFactory?>
+<?import metier.cellFactory.DisplayChoiceFactory?>
 
-<?import cellFactory.DisplayChoiceFactory?>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
    <left>
       <VBox alignment="CENTER" prefWidth="210.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -42,11 +41,12 @@
       </VBox>
    </left>
    <center>
-      <ScrollPane BorderPane.alignment="TOP_LEFT">
-         <content>
-            <TilePane />
-         </content>
-      </ScrollPane>
+       <ScrollPane>
+           <content>
+               <FlowPane fx:id="panes"  prefWidth="600.00">
+               </FlowPane>
+           </content>
+       </ScrollPane>
    </center>
    <top>
        <Label text="SensorsManager" textFill="#c72424" BorderPane.alignment="CENTER">
