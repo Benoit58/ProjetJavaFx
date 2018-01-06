@@ -1,3 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <java version="9.0.1" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="persistence.xml.XMLSensors">
+    <void property="sensorName">
+     <string>Bureau</string>
+    </void>
+    <void property="temperature">
+     <int>46</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="persistence.xml.XMLSensors">
+    <void property="frequency">
+     <int>4</int>
+    </void>
+    <void property="sensorName">
+     <string>Salon</string>
+    </void>
+    <void property="temperature">
+     <int>36</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="persistence.xml.XMLSensors">
+    <void property="frequency">
+     <int>12</int>
+    </void>
+    <void property="sensorName">
+     <string>Cuisine</string>
+    </void>
+    <void property="temperature">
+     <int>23</int>
+    </void>
+   </object>
+  </void>
+ </object>
 </java>

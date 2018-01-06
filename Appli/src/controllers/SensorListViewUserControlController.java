@@ -1,16 +1,13 @@
 package controllers;
 
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import metier.ISensors;
-import metier.Manager;
-import metier.Sensor;
+import metier.SensorsManager;
 import metier.algorithm.IAlgorithmStrategy;
-import metier.algorithm.FenetreGlissante;
 import metier.algorithm.IntervalValue;
 import metier.algorithm.RandomValue;
 
@@ -29,7 +26,7 @@ public class SensorListViewUserControlController {
     ISensors context;
 
     public void sup(){
-        Manager.getSensors().remove(context); }
+        SensorsManager.getSensors().remove(context); }
 
     public void setSensorModel(ISensors sensor)
     {

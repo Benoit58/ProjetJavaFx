@@ -1,17 +1,12 @@
-package persistence.XML;
+package persistence.xml;
 
 import javafx.beans.property.*;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import metier.ISensors;
-import metier.Sensor;
 import metier.SensorThread;
 import metier.SensorsFactory;
 import metier.algorithm.IAlgorithmStrategy;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class XMLSensors implements ISensors, Serializable {
 

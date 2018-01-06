@@ -1,1 +1,38 @@
+@font-face {
+    -fx-font-family: 'Collegiate';
+    src: url("/fonts/Collegiate.ttf");
+}
 
+@font-face {
+    -fx-font-family: 'Roboto';
+    src: url("/fonts/Roboto-Light.ttf");
+}
+
+.root{
+    -fx-font-family: "Roboto";
+    -fx-background-color: #222222;
+}
+
+.button{
+    -fx-label-padding: 5;
+    -fx-font-family: 'Roboto';
+    -fx-background-color: white;
+}
+
+#h1{
+    -fx-font-family: 'Collegiate';
+    -fx-font-size: 8em;
+    -fx-text-fill: white;
+}
+
+#h2{
+    -fx-font-family: 'Roboto';
+    -fx-font-size: 3em;
+    -fx-text-fill: white;
+}
+
+#h3{
+    -fx-font-family: 'Collegiate';
+    -fx-font-size: 1.5em;
+    -fx-text-fill: white;
+}

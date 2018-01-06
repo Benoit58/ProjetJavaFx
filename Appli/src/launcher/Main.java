@@ -6,9 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import metier.Manager;
-import persistence.XML.XMLDataManager;
-import persistence.stub.StubDataManager;
+import metier.SensorsManager;
+import persistence.stub.StubSensors;
+import persistence.xml.XMLDataManager;
 
 public class Main extends Application {
 
@@ -19,7 +19,7 @@ public class Main extends Application {
         loadSensors();
 
         //on charge la fenêtre
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/MainWindow.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/ihm/MainWindow.fxml"));
         Parent root = fxmlLoader.load();
         primaryStage.setOnCloseRequest(event -> {
             event.consume();
@@ -42,17 +42,21 @@ public class Main extends Application {
     }
 
     private void loadSensors(){
-        Manager.setDataManager(new XMLDataManager());
-        Manager.loadSensors();
-        if(Manager.getSensors().isEmpty()){
-            Manager.setDataManager(new StubDataManager());
-            Manager.loadSensors();
+
+       /*SensorsManager.setDataManager(new StubSensors());
+        SensorsManager.loadSensors();*/
+
+        SensorsManager.setDataManager(new XMLDataManager());
+        SensorsManager.loadSensors();
+        if(SensorsManager.getSensors().isEmpty()){
+            SensorsManager.setDataManager(new StubSensors());
+            SensorsManager.loadSensors();
         }
     }
 
     private void saveSensors(){
-        Manager.setDataManager(new XMLDataManager());
-        Manager.writeSensors();
+        SensorsManager.setDataManager(new XMLDataManager());
+        SensorsManager.writeSensors();
     }
 
     @Override

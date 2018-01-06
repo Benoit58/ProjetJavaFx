@@ -1,11 +1,12 @@
-package metier;
+package cellFactory;
 
 import controllers.SensorListViewUserControlController;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.*;
+import metier.ISensors;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
@@ -26,7 +27,7 @@ public class SensorCell extends ListCell<ISensors> {
         super();
         // Chargement du FXML.
         try {
-            final URL fxmlURL = getClass().getResource("/views/SensorListViewUserControl.fxml");
+            final URL fxmlURL = getClass().getResource("/ihm/SensorListViewUserControl.fxml");
             final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
             renderer = fxmlLoader.load();
             rendererController =  fxmlLoader.getController();
@@ -35,7 +36,6 @@ public class SensorCell extends ListCell<ISensors> {
             Logger.getLogger(SensorCell.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
         }
     }
-
 
     @Override
     protected void updateItem(ISensors item, boolean empty) {

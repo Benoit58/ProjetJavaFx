@@ -10,7 +10,7 @@ import metier.ISensors;
 import metier.Sensor;
 
 
-public class IconDIsplayController {
+public class IconDisplayController {
     Image sun=new Image("/img/sun.png");
     Image cloud=new Image("/img/cloud.png");
     Image snowflake=new Image("/img/snowflake.png");

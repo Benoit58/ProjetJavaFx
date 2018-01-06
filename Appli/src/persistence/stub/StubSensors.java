@@ -2,13 +2,19 @@ package persistence.stub;
 
 import metier.ISensors;
 import metier.SensorsFactory;
-import metier.DataManager;
+import persistence.DataManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class StubDataManager implements DataManager {
+public class StubSensors implements DataManager {
 
+
+    /**
+     * Load the below list of sensors
+     *
+     * @return the list of Sensors
+     */
     @Override
     public List<ISensors> loadSensors(){
         List<ISensors> sensors = new ArrayList<ISensors>();
@@ -18,6 +24,12 @@ public class StubDataManager implements DataManager {
         return sensors;
     }
 
+
+    /**
+     * Save Sensors : not implemented
+     *
+     * @param sensors the List of Users to save
+     */
     @Override
     public void writeSensors(List<ISensors> sensors){
         throw new UnsupportedOperationException("Not Supported Yet");

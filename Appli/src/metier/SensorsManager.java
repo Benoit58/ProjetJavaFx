@@ -2,28 +2,24 @@ package metier;
 
 
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.util.List;
+import persistence.DataManager;
 
 /**
  * Façade de la partie Metier
  */
-public class Manager{
+public class SensorsManager {
+    
+    private static DataManager dataManager;
 
     private static final ListProperty<ISensors> sensorsCollection = new SimpleListProperty<>();
         public static ObservableList<ISensors> getSensors() { return sensorsCollection.get(); }
         public static void setSensors(ObservableList<ISensors> value){sensorsCollection.set(value);}
         public static ListProperty<ISensors> sensorsProperty(){return sensorsCollection; }
 
-    //celui qui va gérer la persistance
-    private static DataManager dataManager;
-         public static void setDataManager(DataManager dm){
-        dataManager = dm;
-    }
+    public static void setDataManager(DataManager dm){ dataManager = dm; }
 
     /**
      * le manager récupère la collection de capteurs en déléguant cette
