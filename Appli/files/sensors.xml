@@ -2,7 +2,7 @@
 <java version="9.0.1" class="java.beans.XMLDecoder">
  <object class="java.util.ArrayList">
   <void method="add">
-   <object class="metier.persistence.xml.XMLSensors">
+   <object class="business_logic.persistence.xml.XMLSensor">
     <void property="sensorName">
      <string>Bureau</string>
     </void>
@@ -12,7 +12,7 @@
    </object>
   </void>
   <void method="add">
-   <object class="metier.persistence.xml.XMLSensors">
+   <object class="business_logic.persistence.xml.XMLSensor">
     <void property="frequency">
      <int>12</int>
     </void>

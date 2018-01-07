@@ -1,22 +1,23 @@
-package metier.sensor;
+package business_logic.sensor;
 
-import metier.algorithm.IAlgorithmStrategy;
-import javafx.beans.property.*;
+import business_logic.algorithm.IAlgorithmStrategy;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 
-
-public class Sensor implements ISensors{
-
+public class SuperSensor implements ISensor {
     private SensorThread thread;
 
-    public Sensor(){
+    public SuperSensor(){
         setSensorName("default");
         setTemperature(0);
         setFrequency(1);
     }
 
-    public Sensor(String sensorName, int temp, int frequency){
+    public SuperSensor(int id, String sensorName, ISensor sensor){
         setSensorName(sensorName);
-        setTemperature(temp);
+        set(temp);
         setFrequency(frequency);
     }
 
@@ -26,8 +27,6 @@ public class Sensor implements ISensors{
     private final IntegerProperty temp = new SimpleIntegerProperty();
     @Override public IntegerProperty temperatureProperty(){return temp;}
 
-    private final IntegerProperty frequency = new SimpleIntegerProperty();
-    @Override public IntegerProperty frequencyProperty(){return frequency;}
 
     public void startSensorThread(IAlgorithmStrategy generator){
         this.setTemperature(generator.algorithm());
@@ -47,5 +46,4 @@ public class Sensor implements ISensors{
     public String toString(){
         return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature(), getFrequency());
     }
-
 }

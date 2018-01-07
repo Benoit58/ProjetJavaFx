@@ -1,17 +1,32 @@
-package metier.sensor;
+package business_logic.sensor;
 
 import javafx.application.Platform;
-import metier.algorithm.IAlgorithmStrategy;
+import business_logic.algorithm.IAlgorithmStrategy;
 
+/**
+ * Business class : SensorThread : manage sensors temperature
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class SensorThread extends Thread implements Runnable{
-    private  Sensor sensor;
+
+    private ISensor sensor;
     private IAlgorithmStrategy generator;
 
-    public SensorThread(Sensor sensor, IAlgorithmStrategy generator){
+    /**
+     * Sensor Thread constructor
+     *
+     * @param sensor the sensor
+     * @param generator the temperature generation algorithm
+     */
+    public SensorThread(ISensor sensor, IAlgorithmStrategy generator){
         this.sensor = sensor;
         this.generator = generator;
     }
 
+    /**
+     * Start the Thread
+     */
     @Override
     public void run() {
         while (true){

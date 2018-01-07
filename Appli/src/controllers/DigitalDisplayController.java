@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 import java.io.IOException;
 
@@ -15,9 +15,9 @@ public class DigitalDisplayController extends GridPane {
     @FXML Label sensorTemp;
     @FXML Button deleteButton;
 
-    private ISensors sensor;
+    private ISensor sensor;
 
-    public DigitalDisplayController(ISensors sensor) throws IOException {
+    public DigitalDisplayController(ISensor sensor) throws IOException {
         this.sensor = sensor;
         FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/DigitalDisplay.fxml"));
         leLoader.setController(this);

@@ -1,4 +1,4 @@
-package metier.cellFactory;
+package cellFactory;
 
 import javafx.scene.control.ListCell;
 

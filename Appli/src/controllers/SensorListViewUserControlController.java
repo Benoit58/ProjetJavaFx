@@ -1,15 +1,15 @@
 package controllers;
 
+import business_logic.sensor.ISensor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import metier.sensor.ISensors;
-import metier.sensor.SensorsManager;
-import metier.algorithm.IAlgorithmStrategy;
-import metier.algorithm.IntervalValue;
-import metier.algorithm.RandomValue;
+import business_logic.sensor.SensorsManager;
+import business_logic.algorithm.IAlgorithmStrategy;
+import business_logic.algorithm.IntervalValue;
+import business_logic.algorithm.RandomValue;
 
 public class SensorListViewUserControlController {
 
@@ -23,20 +23,20 @@ public class SensorListViewUserControlController {
     Image start = new Image("/img/play.png");
     Image stop = new Image("/img/stop.png");
 
-    ISensors context;
+    ISensor context;
 
     public void sup(){
         SensorsManager.getSensors().remove(context); }
 
-    public void setSensorModel(ISensors sensor)
+    public void setSensorModel(ISensor sensor)
     {
         this.context = sensor;
     }
-    public void setSensor(ISensors sensor)
+    public void setSensor(ISensor sensor)
     {
         this.context = sensor;
     }
-    public ISensors getSensor(){return this.context;}
+    public ISensor getSensor(){return this.context;}
 
     public void startAndStopThread(){
         IAlgorithmStrategy generator = null;

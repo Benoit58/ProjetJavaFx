@@ -1,17 +1,13 @@
-package metier.algorithm;
+package business_logic.algorithm;
 
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 public class IntervalValue implements IAlgorithmStrategy {
 
-    ISensors sensor;
+    ISensor sensor;
 
-    public IntervalValue(ISensors sensor){
+    public IntervalValue(ISensor sensor){
         this.sensor = sensor;
-    }
-
-    public long getFrequency(){
-        return sensor.getFrequency();
     }
 
     //Math.random --> value in [0, 1[

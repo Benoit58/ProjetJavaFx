@@ -1,11 +1,11 @@
-package metier.persistence;
+package business_logic.persistence;
 
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 import java.util.List;
 
 /**
- * Public interface for metier.persistence management : serialisation
+ * Public interface for business_logic.persistence management : serialisation
  *
  * @author Yannis MAHIOU and Benoit LOUVEAU
  */
@@ -16,13 +16,13 @@ public interface DataManager{
       *
       * @return the loaded Sensors Collection
       */
-     public List<ISensors> loadSensors();
+     public List<ISensor> loadSensors();
 
      /**
       * Serialize the Sensors
       *
       * @param sensors the collection to serialize
       */
-     public void writeSensors(List<ISensors> sensors);
+     public void saveSensors(List<ISensor> sensors);
 
 }

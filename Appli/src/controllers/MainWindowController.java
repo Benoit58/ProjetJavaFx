@@ -1,9 +1,9 @@
 package controllers;
 
+import business_logic.sensor.ISensor;
 import javafx.scene.layout.FlowPane;
-import metier.cellFactory.DisplayChoiceFactory;
-import metier.sensor.ISensors;
-import metier.sensor.SensorsManager;
+import cellFactory.DisplayChoiceFactory;
+import business_logic.sensor.SensorsManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +16,7 @@ import java.io.IOException;
 
 public class MainWindowController {
 
-    @FXML ListView<ISensors> sensorListView;
+    @FXML ListView<ISensor> sensorListView;
     @FXML ComboBox displayChoice;
     @FXML Button button_valid;
     @FXML FlowPane panes;

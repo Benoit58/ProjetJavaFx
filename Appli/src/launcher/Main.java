@@ -6,9 +6,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import metier.sensor.SensorsManager;
-import metier.persistence.stub.StubSensors;
-import metier.persistence.xml.XMLDataManager;
+import business_logic.sensor.SensorsManager;
+import business_logic.persistence.stub.StubSensors;
+import business_logic.persistence.xml.XMLDataManager;
 
 public class Main extends Application {
 
@@ -56,7 +56,7 @@ public class Main extends Application {
 
     private void saveSensors(){
         SensorsManager.setDataManager(new XMLDataManager());
-        SensorsManager.writeSensors();
+        SensorsManager.saveSensors();
     }
 
     @Override

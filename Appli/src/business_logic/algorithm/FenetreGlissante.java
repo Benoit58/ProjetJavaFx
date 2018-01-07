@@ -1,6 +1,6 @@
-package metier.algorithm;
+package business_logic.algorithm;
 
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 import java.util.Random;
 
@@ -8,15 +8,13 @@ import static java.lang.Math.abs;
 
 public class FenetreGlissante implements IAlgorithmStrategy {
 
-    ISensors sensor;
+    ISensor sensor;
     int coef;
 
-    public FenetreGlissante(ISensors sensor, int coef){
+    public FenetreGlissante(ISensor sensor, int coef){
         this.sensor = sensor;
         this.coef = coef;
     }
-
-    public long getFrequency(){return sensor.getFrequency();}
 
     public int algorithm(){
         Random rand = new Random();

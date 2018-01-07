@@ -1,4 +1,4 @@
-package metier.cellFactory;
+package cellFactory;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Rectangle;
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 import java.io.IOException;
 
@@ -17,9 +17,9 @@ public class ThermoDisplayController extends GridPane {
     @FXML Rectangle rectangle;
     @FXML Label sensorName;
 
-    private ISensors sensor;
+    private ISensor sensor;
 
-    public ThermoDisplayController(ISensors sensor) throws IOException{
+    public ThermoDisplayController(ISensor sensor) throws IOException{
         this.sensor = sensor;
         FXMLLoader Loader = new FXMLLoader(getClass().getResource("/ihm/ThermoDisplay.fxml"));
         Loader.setController(this);

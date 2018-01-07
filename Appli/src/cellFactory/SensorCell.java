@@ -1,18 +1,18 @@
-package metier.cellFactory;
+package cellFactory;
 
+import business_logic.sensor.ISensor;
 import controllers.SensorListViewUserControlController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
 import javafx.scene.image.*;
-import metier.sensor.ISensors;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class SensorCell extends ListCell<ISensors> {
+public class SensorCell extends ListCell<ISensor> {
 
     private static final double IMAGE_HEIGHT = 36;
     private static final Image SENSOR_IMG = new Image("/img/sensor.png", 0, IMAGE_HEIGHT, true, true);
@@ -38,7 +38,7 @@ public class SensorCell extends ListCell<ISensors> {
     }
 
     @Override
-    protected void updateItem(ISensors item, boolean empty) {
+    protected void updateItem(ISensor item, boolean empty) {
         super.updateItem(item, empty);
         String text = null;
         Node graphic = null;

@@ -1,18 +1,14 @@
-package metier.algorithm;
+package business_logic.algorithm;
 
-import metier.sensor.ISensors;
+import business_logic.sensor.ISensor;
 
 import java.util.Random;
 
 public class RandomValue implements IAlgorithmStrategy {
 
-    ISensors sensor;
+    ISensor sensor;
 
-    public RandomValue(ISensors sensor){ this.sensor = sensor; }
-
-    public long getFrequency(){
-        return sensor.getFrequency();
-    }
+    public RandomValue(ISensor sensor){ this.sensor = sensor; }
 
     //Math.random --> value in [0, 1[
     public int algorithm(){

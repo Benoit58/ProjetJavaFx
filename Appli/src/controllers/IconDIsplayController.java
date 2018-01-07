@@ -1,12 +1,12 @@
 package controllers;
 
+import business_logic.sensor.ISensor;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
-import metier.sensor.ISensors;
 
 import java.io.IOException;
 
@@ -20,9 +20,9 @@ public class IconDisplayController extends GridPane {
     @FXML Label sensorName;
     @FXML ImageView icon;
 
-    private ISensors sensor;
+    private ISensor sensor;
 
-    public IconDisplayController(ISensors sensor) throws IOException{
+    public IconDisplayController(ISensor sensor) throws IOException{
         this.sensor = sensor;
         FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/IconDisplay.fxml"));
         leLoader.setController(this);

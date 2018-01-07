@@ -1,7 +1,7 @@
-package metier.persistence.xml;
+package business_logic.persistence.xml;
 
-import metier.sensor.ISensors;
-import metier.persistence.DataManager;
+import business_logic.sensor.ISensor;
+import business_logic.persistence.DataManager;
 
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
@@ -19,10 +19,10 @@ public class XMLDataManager implements DataManager {
     private final static String XML_FILE = "files/sensors.xml";
 
     @Override
-    public List<ISensors> loadSensors() {
-        List<ISensors> result = null;
+    public List<ISensor> loadSensors() {
+        List<ISensor> result = null;
         try (XMLDecoder ois = new XMLDecoder(new FileInputStream(XML_FILE))) {
-            result = ((ArrayList<XMLSensors>)ois.readObject()).stream().map(n -> n.getModel()).collect(Collectors.toList());
+            result = ((ArrayList<XMLSensor>)ois.readObject()).stream().map(n -> n.getModel()).collect(Collectors.toList());
         }
         catch (IOException e) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, e);
@@ -31,9 +31,9 @@ public class XMLDataManager implements DataManager {
     }
 
     @Override
-    public void writeSensors(List<ISensors> users) {
+    public void saveSensors(List<ISensor> users) {
         try (XMLEncoder oos = new XMLEncoder(new FileOutputStream(XML_FILE))) {
-            List<XMLSensors> bn = users.stream().map(n -> new XMLSensors(n)).collect(Collectors.toList());
+            List<XMLSensor> bn = users.stream().map(n -> new XMLSensor(n)).collect(Collectors.toList());
             oos.writeObject(bn);
         }
         catch (IOException e) {

@@ -1,13 +1,13 @@
 package controllers;
 
+import business_logic.sensor.ISensor;
+import business_logic.sensor.SensorFactory;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
-import metier.sensor.ISensors;
-import metier.sensor.Sensor;
 
 public class AddSensorController {
 
@@ -29,13 +29,13 @@ public class AddSensorController {
     @FXML
     public Button addButton;
 
-    ObservableList<ISensors> sensorModel;
+    ObservableList<ISensor> sensorModel;
 
     public void addSensor(){
         if(name.getText().isEmpty()|| frequency.getText().isEmpty() || temp.getText().isEmpty()){
             errorMessage.setVisible(true);
         }else{
-            sensorModel.add(new Sensor(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
+            sensorModel.add(SensorFactory.create(name.getText(),Integer.parseInt(temp.getText()),Integer.parseInt(frequency.getText())));
             quit();
         }
     }
@@ -45,7 +45,7 @@ public class AddSensorController {
         stage.close();
     }
 
-    public void getSensorModel(ObservableList<ISensors> sensorModel)
+    public void getSensorModel(ObservableList<ISensor> sensorModel)
     {
         this.sensorModel = sensorModel;
     }
