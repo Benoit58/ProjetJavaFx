@@ -16,6 +16,9 @@ public class SensorsManager {
 
     private static DataManager dataManager;
 
+    /**
+     *
+     */
     private static final ListProperty<ISensor> sensorsCollection = new SimpleListProperty<>();
         public static ObservableList<ISensor> getSensors() { return sensorsCollection.get(); }
         public static void setSensors(ObservableList<ISensor> value){sensorsCollection.set(value);}

@@ -7,8 +7,12 @@ import business_logic.persistence.DataManager;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Business class for stub management : StubSensors : Initialisation of the data which refers to Sensors
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class StubSensors implements DataManager {
-
 
     /**
      * Load the below list of sensors
@@ -23,7 +27,6 @@ public class StubSensors implements DataManager {
         sensors.add(SensorFactory.create("Cuisine", 28, 12));
         return sensors;
     }
-
 
     /**
      * Save Sensors : not implemented

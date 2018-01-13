@@ -10,7 +10,7 @@ import business_logic.algorithm.IAlgorithmStrategy;
  */
 public class SensorThread extends Thread implements Runnable{
 
-    private ISensor sensor;
+    private Sensor sensor;
     private IAlgorithmStrategy generator;
 
     /**
@@ -19,7 +19,7 @@ public class SensorThread extends Thread implements Runnable{
      * @param sensor the sensor
      * @param generator the temperature generation algorithm
      */
-    public SensorThread(ISensor sensor, IAlgorithmStrategy generator){
+    public SensorThread(Sensor sensor, IAlgorithmStrategy generator){
         this.sensor = sensor;
         this.generator = generator;
     }

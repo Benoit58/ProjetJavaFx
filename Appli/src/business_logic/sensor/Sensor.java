@@ -8,44 +8,17 @@ import javafx.beans.property.*;
  *
  * @author Yannis MAHIOU and Benoit LOUVEAU
  */
-public class Sensor implements ISensor {
+public class Sensor extends AbstractSensor {
 
     private SensorThread thread;
-
-    /**
-     * Sensor name property
-     */
-    private final StringProperty sensorName = new SimpleStringProperty();
-        /**
-         * Get Sensor name property
-         *
-         * @return the StringProperty which corresponds to the Sensor name
-         */
-        @Override public StringProperty sensorNameProperty() { return sensorName; }
-
-    /**
-     * Sensor temperature property
-      */
-    private final IntegerProperty temperature = new SimpleIntegerProperty();
-        /**
-         * Get Sensor temperature property
-         *
-         * @return the IntegerProperty which corresponds to the Sensor temperature
-         */
-        @Override public IntegerProperty temperatureProperty(){return temperature;}
 
     /**
      * Sensor frequency property
      */
     private final IntegerProperty frequency = new SimpleIntegerProperty();
-
-        /**
-         * Get Sensor frequency property
-         *
-         * @return the IntegerProperty which corresponds to the Sensor frequency
-         */
-        @Override public IntegerProperty frequencyProperty(){return frequency;}
-
+        public int getFrequency(){return frequency.get();}
+        public void setFrequency(int freq){frequency.set(freq);}
+        public IntegerProperty frequencyProperty(){return this.frequency;}
 
     /**
      * Default constructor : default values
@@ -106,5 +79,4 @@ public class Sensor implements ISensor {
     public String toString(){
         return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature(), getFrequency());
     }
-
 }

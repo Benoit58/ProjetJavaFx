@@ -1,6 +1,6 @@
 package launcher;
 
-import controllers.MainWindowController;
+import controller.MainWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

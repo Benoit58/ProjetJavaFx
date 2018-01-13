@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

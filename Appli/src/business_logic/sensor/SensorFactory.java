@@ -12,7 +12,7 @@ public class SensorFactory {
     }
 
     /**
-     * Create A Sensor
+     * Create a Sensor
      *
      * @param sensorName the sensor name of the ISensor
      * @param temp the temperature of the ISensor
@@ -23,6 +23,14 @@ public class SensorFactory {
         return new Sensor(sensorName, temp, frequency);
     }
 
-
-    public static ISensor create(String sensorName,)
+    /**
+     * Create a SuperSensor
+     *
+     * @param sensorName the superSensor name
+     * @param sensor the ISensor to be Add
+     * @return the created SuperSensor
+     */
+    public static ISensor create(String sensorName,ISensor sensor){
+        return new SuperSensor(sensorName, sensor);
+    }
 }

@@ -1,46 +1,65 @@
 package business_logic.sensor;
 
-import business_logic.algorithm.IAlgorithmStrategy;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.*;
+import javafx.collections.ObservableMap;
 
-public class SuperSensor implements ISensor {
-    private SensorThread thread;
+import java.util.*;
 
-    public SuperSensor(){
-        setSensorName("default");
-        setTemperature(0);
-        setFrequency(1);
-    }
+/**
+ * Business class : SuperSensor
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
+public class SuperSensor extends AbstractSensor {
 
-    public SuperSensor(int id, String sensorName, ISensor sensor){
+    /**
+     * Map property : list of super contained in a super sensor
+     */
+    private final MapProperty<ISensor,Integer> sensorMap = new SimpleMapProperty<>();
+        /**
+         * Get the map of Sensors
+         *
+         * @return an ObservableMap which corresponds to the map in the MapProperty
+         */
+        public ObservableMap<ISensor, Integer> getSensorMap(){return sensorMap.get();}
+        /**
+         * Set the sensors Map
+         *
+         * @param m the map to be set
+         */
+        public void setSensorMap(ObservableMap<ISensor, Integer> m){this.sensorMap.setValue(m);}
+        /**
+         * get the MapPropert of sensors
+         *
+         * @return a mapProperty sensorMap
+         */
+        public MapProperty<ISensor,Integer> sensorMapProperty(){return sensorMap;}
+
+
+        private final IntegerProperty temp = new SimpleIntegerProperty();
+        @Override public IntegerProperty temperatureProperty(){return temp;}
+
+    private IntegerBinding temperature = new IntegerBinding() {
+        {this.bind(temp);}
+        @Override
+        protected int computeValue() {
+            int temperature;
+            int poidsTotal= 0;
+            int result = 0;
+            Set<Map.Entry<ISensor,Integer>> entry = sensorMapProperty().entrySet();
+            Iterator<Map.Entry<ISensor, Integer>> it = entry.iterator();
+            while (it.hasNext()){
+                Map.Entry<ISensor, Integer> e = it.next();
+                result += e.getKey().getTemperature() * e.getValue();
+                poidsTotal += e.getValue();
+            }
+            return result/poidsTotal;
+        }
+    };
+
+    public SuperSensor(String sensorName){
         setSensorName(sensorName);
-        set(temp);
-        setFrequency(frequency);
-    }
-
-    private final StringProperty sensorName = new SimpleStringProperty();
-    @Override public StringProperty sensorNameProperty() { return sensorName; }
-
-    private final IntegerProperty temp = new SimpleIntegerProperty();
-    @Override public IntegerProperty temperatureProperty(){return temp;}
-
-
-    public void startSensorThread(IAlgorithmStrategy generator){
-        this.setTemperature(generator.algorithm());
-        thread = new SensorThread(this, generator);
-        this.thread.start();
-    }
-
-    public SensorThread getThread() {
-        return thread;
-    }
-
-    public void stopSensorThread(){
-        thread.interrupt();
-        thread = null;
     }
 
     public String toString(){

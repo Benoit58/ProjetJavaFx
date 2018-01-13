@@ -1,7 +1,7 @@
 package cellFactory;
 
 import business_logic.sensor.ISensor;
-import controllers.SensorListViewUserControlController;
+import controller.SensorListViewUserControlController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -12,6 +12,11 @@ import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Business logic class for cellFactory management : SensorCell : Manage ListView sensor cells
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class SensorCell extends ListCell<ISensor> {
 
     private static final double IMAGE_HEIGHT = 36;
@@ -22,10 +27,11 @@ public class SensorCell extends ListCell<ISensor> {
     private Node renderer;
     private SensorListViewUserControlController rendererController;
 
-
+    /**
+     * Constructor of a SensorCell : load the fxml
+     */
     public SensorCell(){
         super();
-        // Chargement du FXML.
         try {
             final URL fxmlURL = getClass().getResource("/ihm/SensorListViewUserControl.fxml");
             final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
@@ -37,6 +43,12 @@ public class SensorCell extends ListCell<ISensor> {
         }
     }
 
+    /**
+     * Update the ListView
+     *
+     * @param item an item to update
+     * @param empty a boolean to know if the item must be re-init
+     */
     @Override
     protected void updateItem(ISensor item, boolean empty) {
         super.updateItem(item, empty);

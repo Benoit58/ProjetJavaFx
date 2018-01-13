@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import business_logic.sensor.ISensor;
 import javafx.fxml.FXML;

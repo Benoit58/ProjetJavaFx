@@ -14,10 +14,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
+/**
+ * Business class for XML persistence management : DataManager to manage XML persistence
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class XMLDataManager implements DataManager {
 
     private final static String XML_FILE = "files/sensors.xml";
 
+    /**
+     * Load all the ISensors
+     *
+     * @return the lsit of ISensors loaded
+     */
     @Override
     public List<ISensor> loadSensors() {
         List<ISensor> result = null;
@@ -30,6 +40,11 @@ public class XMLDataManager implements DataManager {
         return result;
     }
 
+    /**
+     * Save sensors using the XML serialization
+     *
+     * @param users all the ISensors to serialize
+     */
     @Override
     public void saveSensors(List<ISensor> users) {
         try (XMLEncoder oos = new XMLEncoder(new FileOutputStream(XML_FILE))) {

@@ -1,4 +1,4 @@
-package controllers;
+package controller;
 
 import business_logic.sensor.ISensor;
 import business_logic.sensor.SensorFactory;
@@ -11,23 +11,12 @@ import javafx.stage.Stage;
 
 public class AddSensorController {
 
-    @FXML
-    private TextField name;
-
-    @FXML
-    private TextField temp;
-
-    @FXML
-    private TextField frequency;
-
-    @FXML
-    private Label errorMessage;
-
-    @FXML
-    public Button quitButton;
-
-    @FXML
-    public Button addButton;
+    @FXML private TextField name;
+    @FXML private TextField temp;
+    @FXML private TextField frequency;
+    @FXML private Label errorMessage;
+    @FXML public Button quitButton;
+    @FXML public Button addButton;
 
     ObservableList<ISensor> sensorModel;
 

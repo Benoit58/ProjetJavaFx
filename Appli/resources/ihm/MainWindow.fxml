@@ -13,7 +13,7 @@
 <?import cellFactory.SensorCellFactory?>
 <?import cellFactory.DisplayChoiceFactory?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainWindowController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainWindowController">
    <left>
       <VBox alignment="CENTER" prefWidth="210.0" spacing="5.0" BorderPane.alignment="CENTER">
          <children>
@@ -32,6 +32,7 @@
                        </cellFactory>
                    </ComboBox>
                    <Button fx:id="button_valid" mnemonicParsing="false" onAction="#display" text="Display" />
+                   <!--Button fx:id="groupButton" onAction="#addSuperSensor" text="Add Super Sensor" /-->
                </children>
             </FlowPane>
          </children>
