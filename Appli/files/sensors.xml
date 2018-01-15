@@ -7,7 +7,7 @@
      <string>Bureau</string>
     </void>
     <void property="temperature">
-     <int>1</int>
+     <int>20</int>
     </void>
    </object>
   </void>
@@ -17,7 +17,7 @@
      <string>Salon</string>
     </void>
     <void property="temperature">
-     <int>5</int>
+     <int>25</int>
     </void>
    </object>
   </void>
