@@ -5,7 +5,7 @@ import business_logic.sensor.ISensor;
 import java.lang.reflect.Method;
 
 public abstract class Visitor {
-    abstract void visit(Object sensor);
+    abstract public void visit(Object sensor);
 
     protected Method getMethod(Class source){
         Class  clazz = source;
@@ -40,6 +40,4 @@ public abstract class Visitor {
             }
         return methodName;
     }
-    }
-
 }

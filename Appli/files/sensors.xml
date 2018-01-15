@@ -11,5 +11,25 @@
     </void>
    </object>
   </void>
+  <void method="add">
+   <object class="business_logic.persistence.xml.XMLSensor">
+    <void property="sensorName">
+     <string>Salon</string>
+    </void>
+    <void property="temperature">
+     <int>25</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="business_logic.persistence.xml.XMLSensor">
+    <void property="sensorName">
+     <string>Cuisine</string>
+    </void>
+    <void property="temperature">
+     <int>26</int>
+    </void>
+   </object>
+  </void>
  </object>
 </java>

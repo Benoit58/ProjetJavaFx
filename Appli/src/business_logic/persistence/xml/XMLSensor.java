@@ -1,5 +1,6 @@
 package business_logic.persistence.xml;
 
+import business_logic.visitor.Visitor;
 import javafx.beans.property.*;
 import business_logic.sensor.ISensor;
 import business_logic.sensor.SensorThread;
@@ -59,5 +60,9 @@ public class XMLSensor implements ISensor, Serializable{
         @Override public int getTemperature() {return ISensor.super.getTemperature();}
         @Override public void setTemperature(int temp) {ISensor.super.setTemperature(temp);}
 
+    @Override
+    public void accept(Visitor visitor){
+            throw new UnsupportedOperationException("Not supported");
+    }
 }
 
