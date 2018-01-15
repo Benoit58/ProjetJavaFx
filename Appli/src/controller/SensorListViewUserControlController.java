@@ -1,6 +1,8 @@
 package controller;
 
+import business_logic.sensor.AbstractSensor;
 import business_logic.sensor.ISensor;
+import business_logic.sensor.Sensor;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -13,30 +15,24 @@ import business_logic.algorithm.RandomValue;
 
 public class SensorListViewUserControlController {
 
-    @FXML
-    Label sensorName;
-    @FXML
-    ImageView state;
-    @FXML
-    ComboBox algoBox;
+    @FXML Label sensorName;
+    @FXML ImageView state;
+    @FXML ComboBox algoBox;
 
     Image start = new Image("/img/play.png");
     Image stop = new Image("/img/stop.png");
 
-    ISensor context;
+    Sensor context;
 
     public void sup(){
-        SensorsManager.getSensors().remove(context); }
+        SensorsManager.getSensors().remove(context);
+    }
 
-    public void setSensorModel(ISensor sensor)
+    public void setSensor(Sensor sensor)
     {
         this.context = sensor;
     }
-    public void setSensor(ISensor sensor)
-    {
-        this.context = sensor;
-    }
-    public ISensor getSensor(){return this.context;}
+    public Sensor getSensor(){return this.context;}
 
     public void startAndStopThread(){
         IAlgorithmStrategy generator = null;

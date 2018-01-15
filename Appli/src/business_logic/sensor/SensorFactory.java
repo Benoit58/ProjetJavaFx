@@ -27,10 +27,9 @@ public class SensorFactory {
      * Create a SuperSensor
      *
      * @param sensorName the superSensor name
-     * @param sensor the ISensor to be Add
      * @return the created SuperSensor
      */
-    public static ISensor create(String sensorName,ISensor sensor){
-        return new SuperSensor(sensorName, sensor);
+    public static ISensor create(String sensorName){
+        return new SuperSensor(sensorName);
     }
 }

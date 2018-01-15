@@ -34,7 +34,8 @@
                          <String fx:value="RandInterval" />
                      </FXCollections>
                  </items>
-             </ComboBox>            <Label fx:id="sensorName" alignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
+             </ComboBox>
+             <Label fx:id="sensorName" text="${controller.context.sensorName}" alignment="CENTER" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="TOP" />
             <ImageView fitHeight="46.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true" GridPane.rowSpan="2">
                <image>
                   <Image url="@../img/sensor.png" />

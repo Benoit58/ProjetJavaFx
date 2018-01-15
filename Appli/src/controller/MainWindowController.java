@@ -80,7 +80,7 @@ public class MainWindowController {
                 addSensorController.quit();
             }
         });
-        addSensorController.getSensorModel(SensorsManager.getSensors());
+        //addSensorController.getSensorModel(SensorsManager.getSensors());
         add.setResizable(false);
         add.centerOnScreen();
 
@@ -88,7 +88,7 @@ public class MainWindowController {
         add.show();
     }
 
-    /*@FXML
+    @FXML
     public void addSuperSensor() throws IOException{
         AddSuperSensorController addSuperSensorController;
         Stage add = new Stage();
@@ -100,7 +100,7 @@ public class MainWindowController {
         add.setScene(windAdd);
         add.setResizable(false);
         add.centerOnScreen();
-    }*/
+    }
 
 }
 

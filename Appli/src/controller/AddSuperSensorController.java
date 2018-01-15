@@ -1,6 +1,8 @@
 package controller;
 
 import business_logic.sensor.ISensor;
+import business_logic.sensor.SensorFactory;
+import business_logic.sensor.SensorsManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -16,12 +19,12 @@ import java.util.ResourceBundle;
 
 public class AddSuperSensorController extends BorderPane implements Initializable{
 
-    @FXML  TextField idSensor;
     @FXML  TextField sensorName;
     @FXML  Button validButton;
     @FXML  Button stopButton;
     @FXML  ListView<ISensor> sensorList;
     @FXML  Button addSensor;
+    @FXML Button quitButton;
 
     private ISensor selectedCapteur;
     private ObservableList<ISensor> sensorCollection;
@@ -30,15 +33,25 @@ public class AddSuperSensorController extends BorderPane implements Initializabl
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        validButton.setOnMousePressed(me -> commitCapteur());
+        /*validButton.setOnMousePressed(me -> commitCapteur());
         stopButton.setOnMousePressed(me -> stopButton.getScene().getWindow().hide());
         sensorList.setOnMouseClicked(me -> selectedCapteur= sensorList.getSelectionModel().getSelectedItem());
-        sensorList.setItems(sensorCollection);
+        sensorList.setItems(sensorCollection);*/
     }
 
     @FXML
     public void addSensor(ISensor sensor, int poids){
-        SensorPoids sens = new SensorPoids(sensor, poids);
-        getSensorList().add(sens);
+        if(sensorName.getText().isEmpty() || sensorList.getItems().isEmpty()){
+            System.out.println("VIDE");
+            //errorMessage.setVisible(true);
+        }else{
+            SensorsManager.getSensors().add(SensorFactory.create(sensorName.getText()));
+            quit();
+        }
+    }
+
+    public void quit() {
+        Stage stage = (Stage) quitButton.getScene().getWindow();
+        stage.close();
     }
 }

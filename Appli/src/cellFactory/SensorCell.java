@@ -1,7 +1,10 @@
 package cellFactory;
 
 import business_logic.sensor.ISensor;
+import business_logic.sensor.Sensor;
+import business_logic.sensor.SuperSensor;
 import controller.SensorListViewUserControlController;
+import controller.SensorListViewUserController2;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.ListCell;
@@ -24,25 +27,6 @@ public class SensorCell extends ListCell<ISensor> {
 
     private ImageView imageView = new ImageView();
 
-    private Node renderer;
-    private SensorListViewUserControlController rendererController;
-
-    /**
-     * Constructor of a SensorCell : load the fxml
-     */
-    public SensorCell(){
-        super();
-        try {
-            final URL fxmlURL = getClass().getResource("/ihm/SensorListViewUserControl.fxml");
-            final FXMLLoader fxmlLoader = new FXMLLoader(fxmlURL);
-            renderer = fxmlLoader.load();
-            rendererController =  fxmlLoader.getController();
-            rendererController.setSensorModel(getItem());
-        } catch (IOException ex) {
-            Logger.getLogger(SensorCell.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
-        }
-    }
-
     /**
      * Update the ListView
      *
@@ -52,17 +36,26 @@ public class SensorCell extends ListCell<ISensor> {
     @Override
     protected void updateItem(ISensor item, boolean empty) {
         super.updateItem(item, empty);
-        String text = null;
-        Node graphic = null;
         if (empty || item == null) {
             imageView.setImage(null);
             setGraphic(null);
             setText(null);
-        } else {
-            graphic = renderer;
-            rendererController.setLabel(item.getSensorName());
-            rendererController.setSensor(item);
-            setGraphic(graphic);
+        }
+
+        try {
+            if(item instanceof Sensor){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl.fxml"));
+                setGraphic(loader.load());
+                ((SensorListViewUserControlController)loader.getController()).setSensor((Sensor) item);
+            }
+            else if(item instanceof SuperSensor){
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl2.fxml"));
+                setGraphic(loader.load());
+                ((SensorListViewUserController2)loader.getController()).setSensor((SuperSensor) item);
+            }
+        }
+        catch(IOException e){
+            System.out.println(e);
         }
     }
 }

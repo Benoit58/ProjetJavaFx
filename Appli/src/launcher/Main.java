@@ -42,16 +42,15 @@ public class Main extends Application {
     }
 
     private void loadSensors(){
+        SensorsManager.setDataManager(new StubSensors());
+        SensorsManager.loadSensors();
 
-       /*SensorsManager.setDataManager(new StubSensors());
-        SensorsManager.loadSensors();*/
-
-        SensorsManager.setDataManager(new XMLDataManager());
+        /*SensorsManager.setDataManager(new XMLDataManager());
         SensorsManager.loadSensors();
         if(SensorsManager.getSensors().isEmpty()){
             SensorsManager.setDataManager(new StubSensors());
             SensorsManager.loadSensors();
-        }
+        }*/
     }
 
     private void saveSensors(){

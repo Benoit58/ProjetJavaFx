@@ -43,12 +43,12 @@ public class XMLDataManager implements DataManager {
     /**
      * Save sensors using the XML serialization
      *
-     * @param users all the ISensors to serialize
+     * @param sensors all the ISensors to serialize
      */
     @Override
-    public void saveSensors(List<ISensor> users) {
+    public void saveSensors(List<ISensor> sensors) {
         try (XMLEncoder oos = new XMLEncoder(new FileOutputStream(XML_FILE))) {
-            List<XMLSensor> bn = users.stream().map(n -> new XMLSensor(n)).collect(Collectors.toList());
+            List<XMLSensor> bn = sensors.stream().map(n -> new XMLSensor(n)).collect(Collectors.toList());
             oos.writeObject(bn);
         }
         catch (IOException e) {

@@ -1,5 +1,6 @@
 package business_logic.sensor;
 
+import business_logic.visitor.Visitor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -31,4 +32,8 @@ public abstract  class AbstractSensor implements ISensor{
      * @return the IntegerProperty which corresponds to the Sensor temperature
      */
     @Override public IntegerProperty temperatureProperty(){return temperature;}
+
+    public void accept(Visitor visitor){
+        visitor.visit(this);
+    }
 }

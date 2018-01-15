@@ -1,5 +1,6 @@
 package business_logic.sensor;
 
+import business_logic.visitor.Visitor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
@@ -51,4 +52,11 @@ public interface ISensor {
      * @return the IntegerProperty which corresponds to the sensor temperature
      */
      IntegerProperty temperatureProperty();
+
+    /**
+     * Allow both Sensor and SuperSensor to be visited by a visitor
+     *
+     * @param visitor
+     */
+     void accept(Visitor visitor);
 }

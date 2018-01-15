@@ -32,7 +32,7 @@
                        </cellFactory>
                    </ComboBox>
                    <Button fx:id="button_valid" mnemonicParsing="false" onAction="#display" text="Display" />
-                   <!--Button fx:id="groupButton" onAction="#addSuperSensor" text="Add Super Sensor" /-->
+                   <Button fx:id="groupButton" onAction="#addSuperSensor" text="Add Super Sensor" />
                </children>
             </FlowPane>
          </children>

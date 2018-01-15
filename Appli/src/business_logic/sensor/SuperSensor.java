@@ -63,6 +63,6 @@ public class SuperSensor extends AbstractSensor {
     }
 
     public String toString(){
-        return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature(), getFrequency());
+        return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature());
     }
 }
