@@ -3,6 +3,7 @@ package business_logic.sensor;
 import business_logic.visitor.Visitor;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
+import javafx.scene.Node;
 
 /**
  * Business interface : ISensor
@@ -58,5 +59,5 @@ public interface ISensor {
      *
      * @param visitor
      */
-     void accept(Visitor visitor);
+     Node accept(Visitor visitor);
 }

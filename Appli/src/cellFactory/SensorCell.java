@@ -3,6 +3,8 @@ package cellFactory;
 import business_logic.sensor.ISensor;
 import business_logic.sensor.Sensor;
 import business_logic.sensor.SuperSensor;
+import business_logic.visitor.SensorVisitor;
+import business_logic.visitor.Visitor;
 import controller.SensorListViewUserControlController;
 import controller.SensorListViewUserController2;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,8 @@ public class SensorCell extends ListCell<ISensor> {
 
     private ImageView imageView = new ImageView();
 
+    private Visitor sensorVisitor = new SensorVisitor();
+
     /**
      * Update the ListView
      *
@@ -41,21 +45,7 @@ public class SensorCell extends ListCell<ISensor> {
             setGraphic(null);
             setText(null);
         }
-
-        try {
-            if(item instanceof Sensor){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl.fxml"));
-                setGraphic(loader.load());
-                ((SensorListViewUserControlController)loader.getController()).setSensor((Sensor) item);
-            }
-            else if(item instanceof SuperSensor){
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl2.fxml"));
-                setGraphic(loader.load());
-                ((SensorListViewUserController2)loader.getController()).setSensor((SuperSensor) item);
-            }
-        }
-        catch(IOException e){
-            System.out.println(e);
-        }
+        else
+        setGraphic(item.accept(sensorVisitor));
     }
 }

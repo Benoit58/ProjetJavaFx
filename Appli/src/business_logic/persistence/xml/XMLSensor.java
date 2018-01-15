@@ -6,6 +6,7 @@ import business_logic.sensor.ISensor;
 import business_logic.sensor.SensorThread;
 import business_logic.sensor.SensorFactory;
 import business_logic.algorithm.IAlgorithmStrategy;
+import javafx.scene.Node;
 
 import java.io.*;
 
@@ -61,7 +62,7 @@ public class XMLSensor implements ISensor, Serializable{
         @Override public void setTemperature(int temp) {ISensor.super.setTemperature(temp);}
 
     @Override
-    public void accept(Visitor visitor){
+    public Node accept(Visitor visitor){
             throw new UnsupportedOperationException("Not supported");
     }
 }

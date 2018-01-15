@@ -1,8 +1,10 @@
 package business_logic.sensor;
 
+import business_logic.visitor.Visitor;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.*;
 import javafx.collections.ObservableMap;
+import javafx.scene.Node;
 
 import java.util.*;
 
@@ -64,5 +66,11 @@ public class SuperSensor extends AbstractSensor {
 
     public String toString(){
         return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature());
+    }
+
+    @Override
+    public Node accept(Visitor superSensorVisitor)
+    {
+       return superSensorVisitor.visit(this);
     }
 }

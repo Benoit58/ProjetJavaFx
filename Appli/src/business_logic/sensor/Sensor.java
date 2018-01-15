@@ -1,7 +1,10 @@
 package business_logic.sensor;
 
 import business_logic.algorithm.IAlgorithmStrategy;
+import business_logic.visitor.SensorVisitor;
+import business_logic.visitor.Visitor;
 import javafx.beans.property.*;
+import javafx.scene.Node;
 
 /**
  * Business class : Sensor
@@ -79,4 +82,12 @@ public class Sensor extends AbstractSensor {
     public String toString(){
         return  String.format("%s - temp : %d - (f : %d)", getSensorName(), getTemperature(), getFrequency());
     }
+
+
+    @Override
+    public Node accept(Visitor sensorVisitor)
+    {
+        return sensorVisitor.visit(this);
+    }
+
 }
