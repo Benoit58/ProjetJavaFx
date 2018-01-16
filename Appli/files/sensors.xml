@@ -7,7 +7,7 @@
      <string>Bureau</string>
     </void>
     <void property="temperature">
-     <int>20</int>
+     <int>4</int>
     </void>
    </object>
   </void>
@@ -28,6 +28,20 @@
     </void>
     <void property="temperature">
      <int>28</int>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="business_logic.persistence.xml.XMLSensor">
+    <void property="sensorName">
+     <string>SuperSensor 1</string>
+    </void>
+   </object>
+  </void>
+  <void method="add">
+   <object class="business_logic.persistence.xml.XMLSensor">
+    <void property="sensorName">
+     <string>SuperSensor 2</string>
     </void>
    </object>
   </void>

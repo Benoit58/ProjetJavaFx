@@ -11,9 +11,10 @@ import javafx.scene.Node;
 import java.io.IOException;
 
 
-public class SensorVisitor extends Visitor{
+public class SensorVisitor implements Visitor{
     private Node renderer;
 
+    @Override
     public Node visit(Sensor sensor) {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl.fxml"));
         try {
@@ -27,6 +28,7 @@ public class SensorVisitor extends Visitor{
         return null;
     }
 
+    @Override
     public Node visit(SuperSensor superSensor){
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/SensorListViewUserControl2.fxml"));
         try {

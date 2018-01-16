@@ -25,6 +25,9 @@ public class StubSensors implements DataManager {
         sensors.add(SensorFactory.create("Bureau", 20, 1));
         sensors.add(SensorFactory.create("Salon", 25, 4));
         sensors.add(SensorFactory.create("Cuisine", 28, 12));
+        sensors.add(SensorFactory.create("SuperSensor 1"));
+        sensors.add(SensorFactory.create("SuperSensor 2"));
+
         return sensors;
     }
 

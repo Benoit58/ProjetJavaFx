@@ -30,7 +30,8 @@ public class SensorListViewUserControlController {
 
 
     public void sup(){
-        context.stopSensorThread();
+        if (context.getThread() !=null)
+            context.stopSensorThread();
         SensorsManager.getSensors().remove(context);
     }
 

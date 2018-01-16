@@ -1,5 +1,9 @@
 package launcher;
 
+import business_logic.persistence.binaire.BinaryDataManager;
+import business_logic.sensor.AbstractSensor;
+import business_logic.sensor.ISensor;
+import business_logic.sensor.Sensor;
 import controller.MainWindowController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -41,9 +45,11 @@ public class Main extends Application {
 
     }
 
-    private void loadSensors(){
+    private void loadSensors() {
+        /*
         SensorsManager.setDataManager(new StubSensors());
         SensorsManager.loadSensors();
+        */
 
         /*SensorsManager.setDataManager(new XMLDataManager());
         SensorsManager.loadSensors();
@@ -51,15 +57,35 @@ public class Main extends Application {
             SensorsManager.setDataManager(new StubSensors());
             SensorsManager.loadSensors();
         }*/
+
+        SensorsManager.setDataManager(new BinaryDataManager());
+        SensorsManager.loadSensors();
+        if (SensorsManager.getSensors().isEmpty()) {
+            SensorsManager.setDataManager(new StubSensors());
+            SensorsManager.loadSensors();
+        }
     }
 
     private void saveSensors(){
+        /*
         SensorsManager.setDataManager(new XMLDataManager());
         SensorsManager.saveSensors();
+        */
+
+        SensorsManager.setDataManager(new BinaryDataManager());
+        SensorsManager.saveSensors();
+
+
+
     }
 
     @Override
     public void stop(){
+        for (ISensor s:SensorsManager.getSensors() ) {
+            if (s instanceof Sensor)
+                if (((Sensor) s).getThread() != null)
+                    ((Sensor) s).stopSensorThread();
+        }
         saveSensors();
     }
 

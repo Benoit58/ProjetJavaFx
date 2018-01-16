@@ -7,8 +7,8 @@ import javafx.scene.Node;
 
 import java.lang.reflect.Method;
 
-public abstract class Visitor {
-    abstract public Node visit(Sensor sensor);
-    abstract public Node visit(SuperSensor sensor);
+public interface  Visitor {
+     public Node visit(Sensor sensor);
+     public Node visit(SuperSensor sensor);
 
 }

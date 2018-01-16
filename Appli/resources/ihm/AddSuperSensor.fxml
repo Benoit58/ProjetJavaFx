@@ -1,4 +1,3 @@
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
@@ -8,16 +7,17 @@
 <BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AddSuperSensorController">
     <right>
         <VBox alignment="BOTTOM_CENTER" prefWidth="86.0" spacing="5.0" BorderPane.alignment="CENTER">
-            <children>
-                <Button fx:id="validButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="OK" />
-                <Button fx:id="stopButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="ANNULER" />
-                <Button fx:id="quitButton" onAction="#quit" text="quitter" />
-            </children>
-            <padding>
-                <Insets left="5.0" right="5.0" />
-            </padding>
-        </VBox>
-    </right>
+    <!--
+    <children>
+        <Button fx:id="validButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="OK" />
+        <Button fx:id="stopButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="ANNULER" />
+        <Button fx:id="quitButton" onAction="#quit" text="quitter" />
+    </children>-->
+    <padding>
+        <Insets left="5.0" right="5.0" />
+    </padding>
+</VBox>
+</right>
     <center>
         <VBox alignment="CENTER">
             <children>
@@ -41,10 +41,11 @@
                         </TextField>
                     </children>
                 </HBox>
-                <Button fx:id="addSensor" onAction="#addSensor" />
+                <Button fx:id="addSensor" onAction="#addSuperSensor" />
                 <Label alignment="CENTER" text="Capteurs :" />
-                <ListView fx:id="capteurList" />
+                <ListView fx:id="sensorList" />
             </children>
         </VBox>
     </center>
+
 </BorderPane>
