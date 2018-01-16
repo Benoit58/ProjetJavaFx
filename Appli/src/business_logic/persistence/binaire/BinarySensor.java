@@ -18,11 +18,12 @@ public class BinarySensor implements ISensor, Externalizable {
 
     public BinarySensor(){}
 
+
     public BinarySensor(ISensor model) {
         this.model = model;
     }
 
-    private ISensor model;
+    private  ISensor model;
 
     public ISensor getModel() {
         return model;

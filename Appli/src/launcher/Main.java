@@ -58,6 +58,7 @@ public class Main extends Application {
             SensorsManager.loadSensors();
         }*/
 
+
         SensorsManager.setDataManager(new BinaryDataManager());
         SensorsManager.loadSensors();
         if (SensorsManager.getSensors().isEmpty()) {

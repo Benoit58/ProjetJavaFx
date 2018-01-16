@@ -15,7 +15,7 @@ public class BinaryDataManager implements DataManager {
     @Override
     public List<ISensor> loadSensors() {
         List<ISensor> result = null;
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("BIN_FILE"))) {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(BIN_FILE))) {
             result = ((ArrayList<BinarySensor>) ois.readObject()).stream().map(n -> n.getModel()).collect(Collectors.toList());
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
@@ -25,7 +25,7 @@ public class BinaryDataManager implements DataManager {
 
     @Override
     public void saveSensors(List<ISensor> sensors) {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("BIN_FILE"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(BIN_FILE))) {
             List<BinarySensor> bn = sensors.stream().map(n -> new BinarySensor(n)).collect(Collectors.toList());
             oos.writeObject(bn);
         }catch (IOException e) {
