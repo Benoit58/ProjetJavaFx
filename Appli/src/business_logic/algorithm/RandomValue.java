@@ -4,13 +4,27 @@ import business_logic.sensor.ISensor;
 
 import java.util.Random;
 
+/**
+ * Business class : random value algorithm
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class RandomValue implements IAlgorithmStrategy {
 
     ISensor sensor;
 
+    /**
+     * Constructor
+     *
+     * @param sensor
+     */
     public RandomValue(ISensor sensor){ this.sensor = sensor; }
 
-    //Math.random --> value in [0, 1[
+    /**
+     * generate random temperature
+     *
+     * @return int: temperature
+     */
     public int algorithm(){
         Random rand = new Random();
         return rand.nextInt(50) + 1;

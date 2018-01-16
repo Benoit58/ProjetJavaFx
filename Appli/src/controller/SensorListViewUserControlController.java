@@ -61,7 +61,7 @@ public class SensorListViewUserControlController {
                 break;
 
             case "RandInterval" :
-                //generator = new FenetreGlissante(sensor);
+                //generator = new MovingInterval(sensor);
                 break;
 
             default :

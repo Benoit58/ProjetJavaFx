@@ -8,10 +8,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * Business class for Binary persistence management : DataManager to manage Binary persistence
+ *
+ * @author Yannis MAHIOU and Benoit LOUVEAU
+ */
 public class BinaryDataManager implements DataManager {
 
     private final static String BIN_FILE = "files/sensors.bin";
 
+    /**
+     * Load all the ISensors
+     *
+     * @return the lsit of ISensors loaded
+     */
     @Override
     public List<ISensor> loadSensors() {
         List<ISensor> result = null;
@@ -23,6 +33,11 @@ public class BinaryDataManager implements DataManager {
         return result;
     }
 
+    /**
+     * Save sensors using the Binary serialization
+     *
+     * @param sensors all the ISensors to serialize
+     */
     @Override
     public void saveSensors(List<ISensor> sensors) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(BIN_FILE))) {

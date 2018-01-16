@@ -21,8 +21,8 @@ public class IntervalValue implements IAlgorithmStrategy {
     }
 
     /**
-     *
-     * @return
+     * generate temperature between  interval
+     * @return int: temperature
      */
     public int algorithm(){
         int min=14, max=21;

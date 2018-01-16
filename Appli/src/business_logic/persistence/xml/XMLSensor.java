@@ -61,6 +61,11 @@ public class XMLSensor implements ISensor, Serializable{
         @Override public int getTemperature() {return ISensor.super.getTemperature();}
         @Override public void setTemperature(int temp) {ISensor.super.setTemperature(temp);}
 
+    /**
+     *
+     * @param visitor
+     * @return Node
+     */
     @Override
     public Node accept(Visitor visitor){
             throw new UnsupportedOperationException("Not supported");

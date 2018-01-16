@@ -20,7 +20,14 @@ public class SensorsManager {
      *
      */
     private static final ListProperty<ISensor> sensorsCollection = new SimpleListProperty<>();
-        public static ObservableList<ISensor> getSensors() { return sensorsCollection.get(); }
+
+    private static ISensor selectedSensor;
+        public static ISensor getSelectedSensor() { return selectedSensor; }
+        public static void setSelectedSensor(ISensor selectedSensor) { SensorsManager.selectedSensor = selectedSensor; }
+
+
+
+    public static ObservableList<ISensor> getSensors() { return sensorsCollection.get(); }
         public static void setSensors(ObservableList<ISensor> value){sensorsCollection.set(value);}
         public static ListProperty<ISensor> sensorsProperty(){return sensorsCollection; }
 
