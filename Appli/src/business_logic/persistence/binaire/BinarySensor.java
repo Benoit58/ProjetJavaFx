@@ -77,12 +77,25 @@ public class BinarySensor implements ISensor, Externalizable {
     public Node accept(Visitor visitor) {throw new UnsupportedOperationException("Not supported");}
 
 
+    /**
+     * write object
+     *
+     * @param oos
+     * @throws IOException
+     */
     @Override
     public void writeExternal(ObjectOutput oos) throws IOException {
         oos.writeObject(getSensorName());
         oos.writeInt(getTemperature());
     }
 
+    /**
+     * read object
+     *
+     * @param ois
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     @Override
     public void readExternal(ObjectInput ois) throws IOException, ClassNotFoundException {
         model = SensorFactory.create();

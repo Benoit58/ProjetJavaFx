@@ -60,6 +60,11 @@ public class SuperSensor extends AbstractSensor {
         }
     };
 
+    /**
+     * SuperSensor Constructor
+     *
+     * @param sensorName
+     */
     public SuperSensor(String sensorName){
         setSensorName(sensorName);
     }

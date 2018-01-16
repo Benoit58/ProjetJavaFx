@@ -84,6 +84,11 @@ public class Sensor extends AbstractSensor {
     }
 
 
+    /**
+     * accepte le visiteur
+     * @param sensorVisitor
+     * @return
+     */
     @Override
     public Node accept(Visitor sensorVisitor)
     {
