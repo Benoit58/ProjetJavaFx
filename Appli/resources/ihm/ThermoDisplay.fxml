@@ -61,7 +61,7 @@
             <Label text="°C" />
          </children>
       </HBox>
-      <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+      <Button onAction="#closeDisplay" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="16.0" prefWidth="16.0" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
          <graphic>
             <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                <image>

@@ -18,9 +18,11 @@ public class DigitalDisplayController extends GridPane {
     @FXML GridPane grid;
 
     private ISensor sensor;
+    private TilePane panes;
 
-    public DigitalDisplayController(ISensor sensor) throws IOException {
+    public DigitalDisplayController(ISensor sensor,TilePane pane) throws IOException {
         this.sensor = sensor;
+        this.panes = pane;
         FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/DigitalDisplay.fxml"));
         leLoader.setController(this);
         leLoader.setRoot(this);
@@ -29,7 +31,7 @@ public class DigitalDisplayController extends GridPane {
 
     @FXML
     public void closeDisplay(){
-        this.setVisible(false);
+        panes.getChildren().remove(this);
     }
 
     public void initialize(){

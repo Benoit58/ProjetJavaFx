@@ -24,13 +24,20 @@ public class IconDisplayController extends GridPane {
 
 
     private ISensor sensor;
+    private TilePane panes;
 
-    public IconDisplayController(ISensor sensor) throws IOException{
+    public IconDisplayController(ISensor sensor,TilePane panes) throws IOException{
         this.sensor = sensor;
+        this.panes = panes;
         FXMLLoader leLoader = new FXMLLoader(getClass().getResource("/ihm/IconDisplay.fxml"));
         leLoader.setController(this);
         leLoader.setRoot(this);
         leLoader.load();
+    }
+
+    @FXML
+    public void closeDisplay(){
+        panes.getChildren().remove(this);
     }
 
     public void initialize(){

@@ -20,13 +20,20 @@ public class ThermoDisplayController extends GridPane {
     @FXML GridPane grid;
 
     private ISensor sensor;
+    private TilePane panes;
 
-    public ThermoDisplayController(ISensor sensor) throws IOException{
+    public ThermoDisplayController(ISensor sensor,TilePane panes) throws IOException{
         this.sensor = sensor;
+        this.panes = panes;
         FXMLLoader Loader = new FXMLLoader(getClass().getResource("/ihm/ThermoDisplay.fxml"));
         Loader.setController(this);
         Loader.setRoot(this);
         Loader.load();
+    }
+
+    @FXML
+    public void closeDisplay(){
+        panes.getChildren().remove(this);
     }
 
     public void initialize(){

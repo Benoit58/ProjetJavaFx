@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
-import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -54,22 +53,23 @@ public class MainWindowController {
             if(displayChoice.getSelectionModel().getSelectedItem() != null && sensorListView.getSelectionModel().getSelectedItem() != null){
                 switch(displayChoice.getSelectionModel().getSelectedItem().toString()){
                     case "Digital" :
-                        panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem(),panes));
                         break;
 
                     case "Thermo" :
-                        panes.getChildren().add(new ThermoDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        panes.getChildren().add(new ThermoDisplayController(sensorListView.getSelectionModel().getSelectedItem(),panes));
                         break;
 
                     case "Icon" :
-                        panes.getChildren().add(new IconDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+                        panes.getChildren().add(new IconDisplayController(sensorListView.getSelectionModel().getSelectedItem(),panes));
                         break;
 
                     default :
                         throw new UnsupportedOperationException("ERROR");
                 }
             }
-            else panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
+            else panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem(),panes));
+
 
     }
     @FXML
