@@ -16,8 +16,6 @@ import business_logic.algorithm.RandomValue;
 public class SensorListViewUserController2 {
 
     @FXML Label sensorName;
-    @FXML ImageView state;
-    @FXML ComboBox algoBox;
 
     Image start = new Image("/img/play.png");
     Image stop = new Image("/img/stop.png");
@@ -31,6 +29,8 @@ public class SensorListViewUserController2 {
     public void setSensor(SuperSensor sensor)
     {
         this.context = sensor;
+        sensorName.textProperty().bind(context.sensorNameProperty());
+
     }
     public SuperSensor getSensor(){return this.context;}
 

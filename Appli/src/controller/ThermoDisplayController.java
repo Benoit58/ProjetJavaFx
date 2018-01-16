@@ -3,7 +3,8 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import business_logic.sensor.ISensor;
 
@@ -16,6 +17,7 @@ public class ThermoDisplayController extends GridPane {
     @FXML Label minLabel;
     @FXML Rectangle rectangle;
     @FXML Label sensorName;
+    @FXML GridPane grid;
 
     private ISensor sensor;
 
@@ -31,5 +33,7 @@ public class ThermoDisplayController extends GridPane {
         sensorName.textProperty().bind(sensor.sensorNameProperty());
         tempLabel.textProperty().bind((sensor.temperatureProperty().asString()));
         rectangle.heightProperty().bind(sensor.temperatureProperty().multiply(90).divide(200).add(45));
+        grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
     }
 }

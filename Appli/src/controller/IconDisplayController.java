@@ -6,7 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 
 import java.io.IOException;
 
@@ -19,6 +20,8 @@ public class IconDisplayController extends GridPane {
 
     @FXML Label sensorName;
     @FXML ImageView icon;
+    @FXML GridPane grid;
+
 
     private ISensor sensor;
 
@@ -37,5 +40,7 @@ public class IconDisplayController extends GridPane {
             if ((int) newV > 20) icon.setImage(sun);
             if ((int) newV >= 0 && (int) newV <= 20) icon.setImage(cloud);
         });
+        grid.setBorder(new Border(new BorderStroke(Color.BLACK, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+
     }
 }

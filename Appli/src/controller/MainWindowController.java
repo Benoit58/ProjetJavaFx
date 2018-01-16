@@ -1,7 +1,7 @@
 package controller;
 
 import business_logic.sensor.ISensor;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.*;
 import cellFactory.DisplayChoiceFactory;
 import business_logic.sensor.SensorsManager;
 import javafx.fxml.FXML;
@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -19,7 +20,7 @@ public class MainWindowController {
     @FXML ListView<ISensor> sensorListView;
     @FXML ComboBox displayChoice;
     @FXML Button button_valid;
-    @FXML FlowPane panes;
+    @FXML TilePane panes;
     @FXML Button groupButton;
 
     private ISensor selectedSensor;
@@ -27,6 +28,14 @@ public class MainWindowController {
     public void initialize() {
         displayChoice.setItems(DisplayChoiceFactory.comboList);
         sensorListView.setItems(SensorsManager.getSensors());
+        sensorListView.getSelectionModel().selectFirst();
+
+
+
+
+
+
+
         /*sensorListView.setOnMouseClicked(e -> selectedSensor = sensorListView.getSelectionModel().getSelectedItem());
         sensorListView.setOnDragDetected(e -> {
             if(selectedSensor != null)sensorListView.startDragAndDrop(TransferMode.ANY);
@@ -60,8 +69,9 @@ public class MainWindowController {
                         throw new UnsupportedOperationException("ERROR");
                 }
             }
-    }
+            else panes.getChildren().add(new DigitalDisplayController(sensorListView.getSelectionModel().getSelectedItem()));
 
+    }
     @FXML
     public void addSensor()  throws IOException{
         AddSensorController addSensorController;
@@ -69,7 +79,6 @@ public class MainWindowController {
         add.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader addloader = new FXMLLoader(getClass().getResource("/ihm/AddSensor.fxml"));
         Scene windAdd = new Scene(addloader.load());
-
         add.setScene(windAdd);
         addSensorController = addloader.getController();
         windAdd.setOnKeyPressed(event -> {
@@ -83,23 +92,34 @@ public class MainWindowController {
         //addSensorController.getSensorModel(SensorsManager.getSensors());
         add.setResizable(false);
         add.centerOnScreen();
-
         add.setTitle("Add new sensor");
         add.show();
     }
-
     @FXML
     public void addSuperSensor() throws IOException{
-        AddSuperSensorController addSuperSensorController;
+       /* AddSuperSensorController addSuperSensorController;
         Stage add = new Stage();
         add.initModality(Modality.APPLICATION_MODAL);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/ihm/AddSuperSensor.fxml"));
         Scene windAdd = new Scene(loader.load());
-        addSuperSensorController = new AddSuperSensorController(SensorsManager.getSensors());
-        loader.setController(addSuperSensorController);
-        add.setScene(windAdd);
+
+
+        //addSuperSensorController = new AddSuperSensorController(SensorsManager.getSensors());
+        //loader.setController(addSuperSensorController);
+        //add.setScene(windAdd);
         add.setResizable(false);
-        add.centerOnScreen();
+        add.centerOnScreen();*/
+
+        Stage addd = new Stage();
+        addd.initModality(Modality.APPLICATION_MODAL);
+        FXMLLoader adddloader = new FXMLLoader(getClass().getResource("/ihm/AddSuperSensor.fxml"));
+        Scene windAddd = new Scene(adddloader.load());
+        addd.setScene(windAddd);
+        addd.setResizable(false);
+        addd.centerOnScreen();
+        addd.setTitle("Add new Super sensor");
+        addd.show();
+
     }
 
 }
